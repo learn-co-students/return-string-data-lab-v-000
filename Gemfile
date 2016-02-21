@@ -39,6 +39,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'faker'
+  gem 'shoulda'
+  gem 'selenium-webdriver'
 end
 
 group :development do
