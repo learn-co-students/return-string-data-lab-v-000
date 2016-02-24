@@ -1,7 +1,8 @@
 tags:
-  - tag_1
-  - tag_2
+  - apis
+  - rails
+  - jquery
 languages:
-  - language_1
-  - language_1
+  - ruby
+  - javascript
 resources: 0
