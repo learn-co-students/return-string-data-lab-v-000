@@ -1,1 +1,34 @@
+<h1>Products</h1>
 
+<% @products.each do |product| %>
+  <em><%= product.name %></em>
+  <button data-id="<%= product.id %>" class="product-info-button">More Info</button>
+  <div id="product-<%= product.id %>" class="product-info"></div>
+
+  <br><br>
+<% end %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  $(".product-info-button").on("click", function(){
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory").done(function(inStock){
+      if (inStock === "true") {
+        $("#product-" + id).append("<p><strong>Available</strong></p><br>");
+      } 
+      else {
+        $("#product-" + id).append("<p><strong>Sold Out</strong></p><br>");
+      }
+    });
+
+    $.get("/products/" + id + "/description").done(function(description){
+      $("#product-" + id).append("<p>" + description + "</p><br/>");
+
+    });
+
+  });
+});
+
+</script>
