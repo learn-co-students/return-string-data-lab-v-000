@@ -1,1 +1,22 @@
+<h1>Products</h1>
+<%= render @products %>
 
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $(".js-more").on("click", function(){
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(data){
+        $("#description-" + id).text(data);  
+      });
+      var inventory;
+      $.get("/products/" + id + "/inventory", function(data){
+        if (data === "true") {
+          inventory = "Available"
+        } else {
+          inventory = "Sold Out"
+        }
+        $("#inventory-" + id).text(inventory);
+      });
+    });
+  });
+</script>
