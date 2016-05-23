@@ -1,1 +1,28 @@
+2. Create an index page for all products that displays name and a truncated description, but not inventory.
+<ul>
+<% @products.each do |product| %>
+  <li><%= product.name %></li>
+  <li><%= product.price %></li>
+  <li id="product-<%= product.id %>"><%= truncate(product.description) %></li>
+  <li><%= product.inventory %></li>
+   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+<% end %>
+</ul>
 
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
