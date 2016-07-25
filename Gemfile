@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'learn-co'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
