@@ -14,10 +14,6 @@ class ProductsController < ApplicationController
     redirect_to product_path
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
-
   def description
     product = Product.find(params[:id])
     render plain: product.description
@@ -25,7 +21,7 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    render plain: (product.inventory.to_i > 0)
+    render plain: (product.inventory > 0 true : false)
   end
 
 
