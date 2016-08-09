@@ -1,0 +1,25 @@
+
+<%= product.name %>
+<div id='body-<%=product.id%>'></div>
+<div id='description-<%= product.id%>'></div>
+<button class="js-more" data-id="<%= product.id %>">More...</button><br>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(data) {
+      if (data == 'true') {
+      $('#body-'+ id).text('Available');
+    }
+    else {
+       $('#body-'+ id).text('Sold Out');
+    }
+
+    });
+    $.get("/products/" + id + "/description", function(data){
+      $('#description-'+id).text(data);
+    })
+  });
+});
+</script>
