@@ -2,7 +2,7 @@
 <% @products.each do |p| %>
   <h3><%=p.name %></h3>
   <div id="description-<%=p.id%>"><%=truncate p.description%></div>
-  <button class="js-more" data-id="<%= p.id %>">More...</button>
+  <button class="js-more" data-id="<%= p.id %>">More Info</button>
 <%end%>
 
 
@@ -13,13 +13,15 @@ $(function () {
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(description) {
       $.get("/products/" + id + "/inventory", function(inventory) {
-        if(inventory == 0) {
-          invetory_text = "Not Available"
+        var inventory_text = ""
+        if(inventory === "false") {
+          inventory_text = "Sold Out"
         }
         else {
           inventory_text = "Available"
         }
-        $("#description-" + id).html(inventory_text + "<br>" + description);
+        var description_text = "<p>" + description + inventory_text + "</p>";
+        $("#description-" + id).html(description_text);
       });
     });
   });
