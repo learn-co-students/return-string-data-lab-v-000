@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def inventory
     @amount = @product.inventory
-    binding.pry
+    # binding.pry
     
     if @product.inventory > 0
       render plain: true

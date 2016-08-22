@@ -11,20 +11,15 @@ $(function () {
     // get the id from the data attribute
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
-      // alert(data);
       $("#body-" + id).text(data);
     });
 
     $.get("/products/" + id + "/inventory", function(data) {
       // alert(data);
-      console.log(data)
-      if (data == true) {
-        // go into controller and get inventory amount
-        data = '<%= @amount %>';
-        $("#body-" + id).text(data);
+      if (data === "true") {
+        $("#inventory-" + id).text("Available");
       }else{
-        // otherwise display sold out
-        $("#body-" + id).text("Sold Out");
+        $("#inventory-" + id).text("Sold Out");
       }
     });
   });
