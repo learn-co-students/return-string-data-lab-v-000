@@ -1,1 +1,32 @@
+<h1>Products:</h1>
 
+<% @products.each do |product| %>
+  <li><%= product.name        %></li>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      // alert(data);
+      $("#body-" + id).text(data);
+    });
+
+    $.get("/products/" + id + "/inventory", function(data) {
+      // alert(data);
+      console.log(data)
+      if (data == true) {
+        // go into controller and get inventory amount
+        data = '<%= @amount %>';
+        $("#body-" + id).text(data);
+      }else{
+        // otherwise display sold out
+        $("#body-" + id).text("Sold Out");
+      }
+    });
+  });
+});
+</script>
