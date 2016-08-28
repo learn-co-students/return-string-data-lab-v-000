@@ -41,6 +41,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
