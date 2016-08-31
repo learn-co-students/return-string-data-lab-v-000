@@ -1,1 +1,9 @@
+<h2>Products</h2>
 
+<ul>
+  <% @products.each do |product| %>
+  <li>
+    <%= render partial: 'product', locals: { product: product } %>
+  </li>
+  <% end %>
+</ul>
