@@ -5,12 +5,10 @@
 
 <button class="js-more" data-id="<%= product.id %>">More Info</button>
 
-
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
     var id = $(this).data("id");
-
 
     // Fetch Description
     $.ajax({
