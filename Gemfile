@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'chromedriver-helper'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
