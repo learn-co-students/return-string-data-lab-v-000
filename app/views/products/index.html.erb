@@ -1,1 +1,4 @@
-
+<% @products.each do |product| %>
+  <h1><%= product.name %></h1>
+  <div><%= truncate product.description %></div>
+<% end %>
