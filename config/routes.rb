@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :products
 
   get 'product/:id/inventory', to: 'products#inventory'
-  get 'product/:id/inventory', to: 'products#description'
+  get 'product/:id/description', to: 'products#description'
 end
