@@ -1,1 +1,29 @@
-
+<h1>All Products:</h1>
+<br>
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <p><%= product.name %></p>
+      <div id="description-<%= product.id %>"><%= truncate product.description %></div>
+      <div id="inventory-<%= product.id %>"></div>
+      <button class="submit" data-id="<%= product.id %>">More Info</button>
+    </li>
+  <% end %>
+</ul>
+<script type="text/javascript" charset="utf-8" >
+  $(function() {
+    $(".submit").on("click", function() {
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(description) {
+        $("#description-" + id).append(description)
+      })
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        if (inventory == "true") {
+          $("#inventory-" + id).text("Available")
+        } else if (inventory == "false") {
+          $("#inventory-" + id).text("Sold Out")
+        }
+      })
+    })
+  })
+</script>
