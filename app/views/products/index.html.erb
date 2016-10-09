@@ -1,1 +1,6 @@
+<%= page_entries_info @products %>
+<%= paginate @products, window: 2 %>
 
+<% @products.each do |product| %>
+  <%= render partial: 'product', locals: {product: product} %>
+<% end %>
