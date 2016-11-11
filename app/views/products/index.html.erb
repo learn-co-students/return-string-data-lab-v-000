@@ -1,7 +1,7 @@
-<h1>index page in progress...</h1>
+<h3>Our Product Selection</h3>
 <ul>
 <% @products.each do |product| %>
-<li><%= product.name %>: <%= product.description %></li>
+<li><strong><%= product.name %>:</strong> <%= product.description %></li><br>
 <% end %>
 
 </ul>
