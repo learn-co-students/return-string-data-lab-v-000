@@ -23,11 +23,13 @@ class ProductsController < ApplicationController
   end
 
   def inventory
-    if @product.inventory > 0
-      render plain: "true"
-    else
-      render plain: "false"
-    end
+    render plain: @product.inventory > 0 ? true : false
+    # Or you can do it this way...
+    # if @product.inventory > 0
+    #   render plain: "true"
+    # else
+    #   render plain: "false"
+    # end
   end
 
 

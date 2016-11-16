@@ -7,11 +7,11 @@ $(function () {
   $(".js-more").on('click', function() {
     // get the id from the data attribute
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(data) {
-      $("#description-" + id).text(data);
+    $.get("/products/" + id + "/description", function(description) {
+      $("#description-" + id).text(description);
     });
-    $.get("/products/" + id + "/inventory", function(data) {
-      if(data == "true") {
+    $.get("/products/" + id + "/inventory", function(inventory) {
+      if(inventory === "true") {
         $("#inventory-" + id).text("Available");
       } else {
         $("#inventory-" + id).text("Sold Out");
