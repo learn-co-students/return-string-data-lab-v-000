@@ -1,1 +1,24 @@
+<% @products.each do |p| %>
+  <%= render "product_list", product: p %>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-info").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      $("#description-" + id).text(data);
+    });
+    $.get("/products/" + id + "/inventory", function(data) {
+      var html = "<h3>";
+      if (data === "true"){
+        html += "Available";
+      } else {
+        html += "Sold Out";
+      }
+      html += "</h3>";
+      $("#description-" + id).append(html);
+    });
+  });
+});
+</script>
