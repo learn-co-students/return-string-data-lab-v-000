@@ -11,6 +11,10 @@ products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "la
   products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
   Product.create(:name => products.sample, :price => Faker::Number.between(1,1500))
 end
+product = Product.first
+product.description = "Extremely cool product. I love it so much!"
+product.save
+
 5.times do
   Customer.create(:name => Faker::Name.name)
 end
@@ -22,4 +26,3 @@ end
   order = Order.create(:customer_id => Customer.all.collect(&:id).sample, :invoice_id => Invoice.all.collect(&:id).sample)
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
-
