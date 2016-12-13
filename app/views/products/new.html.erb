@@ -1,1 +1,7 @@
-
+<%= form_for @product do |p| %>
+<%= p.text_field :name, placeholder: "name" %>
+<%= p.text_field :description, placeholder: "description" %>
+<%= p.text_field :price, placeholder: "price" %>
+<%= p.text_field :inventory, placeholder: "inventory" %>
+<%= p.submit "Create" %>
+<% end %>
