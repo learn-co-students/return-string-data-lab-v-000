@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.sold {
+  color: red;
+}
+
+.available {
+  color: green;
+}
