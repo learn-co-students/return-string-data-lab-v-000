@@ -1,1 +1,11 @@
+<h2>All <%= @products.count %> Products</h2>
+<%= link_to "Add a new product", new_product_path %>
 
+<% @products.each do |product| %>
+	<div class="product">
+		<h4><%= product.name %></h4>
+		<p id="price-<%= product.id %>">$<%= product.price %></p>
+		<p id="description-<%= product.id %>"><%= truncate product.description ||= "No description available" %></p>
+		<button class="js-more" data-id="<%= product.id %>">More Info</button>
+	</div>
+<% end %>

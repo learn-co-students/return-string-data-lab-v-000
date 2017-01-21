@@ -1,0 +1,11 @@
+<%= form_for @product do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name, value: @product.name %> <br>
+	<%= f.label :price %>
+	<%= f.number_field :price, value: @product.price %> <br>
+	<%= f.label :description %>
+	<%= f.text_area :description, value: @product.description %> <br>
+	<%= f.label :inventory %>
+	<%= f.number_field :inventory, value: @product.inventory %> <br>	
+	<%= f.submit %>		
+<% end %>
