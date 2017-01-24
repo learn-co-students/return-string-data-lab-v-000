@@ -1,1 +1,11 @@
-
+<%= form_tag products_path do %>
+  <%= label_tag :name %>
+  <%= text_field_tag 'product[name]' %><br>
+  <%= label_tag :price %>
+  <%= number_field_tag 'product[price]' %><br>
+  <%= label_tag :description %>
+  <%= text_area_tag 'product[description]' %><br>
+  <%= label_tag :inventory %>
+  <%= number_field_tag 'product[inventory]' %><br>
+  <%= submit_tag 'Submit Product'%>
+<% end %>
