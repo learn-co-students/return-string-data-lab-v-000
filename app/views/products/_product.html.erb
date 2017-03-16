@@ -1,0 +1,9 @@
+<li>
+  <strong>Name:</strong> <%= product.name %> <br>
+  <% if product.description %>
+     <span id="description-<%= product.id %>"><%= truncate product.description %></span><br>
+  <% end %>
+  <span id="inventory-<%= product.id %>"></span>
+  <%= link_to "Plain-text description", "/products/#{product.id}/description"%> |   <%= link_to "Inventory available?", "/products/#{product.id}/inventory"%> <br>
+  <button class="js-more" data-id="<%= product.id %>">More Info</button>
+</li>
