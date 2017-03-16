@@ -1,1 +1,23 @@
-
+<h2>Products</h2>
+<ul>
+  <%= render partial: "product", collection: @products %>
+</ul>
+<br>
+<%= link_to "New product", new_product_path %>
+<script type="text/javascript">
+  $(function() {
+    $('.js-more').on('click', function(){
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(data) {
+        $("#description-" + id).text(data);
+      });
+      $.get("/products/" + id + "/inventory", function(data) {
+        if(data === "true") {
+          $("#inventory-" + id).text("Available");
+        } else {
+          $("#inventory-" + id).text("Sold Out");
+        }
+      });
+    });
+  });
+</script>
