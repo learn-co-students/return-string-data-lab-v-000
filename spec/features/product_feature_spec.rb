@@ -19,4 +19,5 @@ RSpec.describe "Product Index", type: :feature do
     click_button "More Info"
     expect(page).to have_content "Available"
   end
+
 end
