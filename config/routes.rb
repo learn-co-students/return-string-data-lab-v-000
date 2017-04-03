@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   get '/products/:id/available', to: 'products#available'
   get '/products/:id/inventory', to: 'products#inventory'
 
-  post '/products/new', to: 'products#create'
+  post '/products', to: 'products#create'
 
   resources :orders
   resources :invoices
-  resources :products
+  resources :products, only: [:index, :new, :create]
 end
