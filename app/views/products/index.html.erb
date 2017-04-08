@@ -1,1 +1,6 @@
+<h1>View All Products</h1>
 
+<% @products.each do |product| %>
+  <%= link_to product.name, product_path(product) %> <br>
+  <%= truncate product.description %> <br><br>
+<% end %>
