@@ -4,7 +4,7 @@
   <%= link_to product.name, product_path(product) %> <br>
   <p id="description-<%= product.id %>"><%= truncate product.description %></p>
   <p id="inventory-<%= product.id %>"></p>
-  <button class="js-more" data-id="<%= product.id %>">More...</button> <br> <br>
+  <button class="js-more" data-id="<%= product.id %>">More Info</button> <br> <br>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
