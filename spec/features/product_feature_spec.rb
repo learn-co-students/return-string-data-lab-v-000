@@ -4,5 +4,5 @@ RSpec.describe "Product Index", type: :feature do
   before do
     Product.destroy_all
   end
-
+#
 end
