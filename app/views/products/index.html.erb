@@ -7,7 +7,7 @@
     $('.js-more').on('click', function() {
       var id = $(this).data('id')
       $.get('/products/' + id + '/description', function(data) {
-        $('#desc-' + id).text(data)
+        $('#descrption-' + id).text(data)
       })
       $.get('/products/' + id + '/inventory', function(data) {
         if (data === 'true')
