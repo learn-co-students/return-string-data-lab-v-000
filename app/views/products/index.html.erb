@@ -1,1 +1,13 @@
+<%= link_to "New Product", new_product_path %>
 
+<% @products.each do |product| %>
+  <div>
+    <h1><%= product.name %></h1>
+    <p id="product-<%= product.id %>">
+      <%= truncate product.description %>
+    </p>
+    <button data-id="<%= product.id %>" class="more-info">
+      More Info
+    </button>
+  </div>
+<% end %>
