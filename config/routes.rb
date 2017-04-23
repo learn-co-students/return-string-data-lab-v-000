@@ -9,11 +9,11 @@ Rails.application.routes.draw do
 
   resources :orders
   resources :invoices
-<<<<<<< HEAD
+ 
   resources :products, only: [:index, :show, :new, :create]
   get '/products/:id/description', to: 'products#description'
   get '/products/:id/inventory', to: 'products#inventory'
-=======
+ 
   resources :products, only: [:index, :new, :create]
->>>>>>> 443ac024a8933692eddc29e4fef18f0f5b8994da
+ 
 end

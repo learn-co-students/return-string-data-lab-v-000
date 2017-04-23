@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-<<<<<<< HEAD
+  before_action :set_product, only: [:show, :edit, :destroy, :update, :available, :description, :inventory]
+
   def index
     @products = Product.all
   end
@@ -16,8 +17,7 @@ class ProductsController < ApplicationController
   def description
     product = Product.find(params[:id])
     render plain: product.description
-=======
-  before_action :set_product, only: [:show, :edit, :destroy, :update, :available, :description, :inventory]
+  end
 
   def description
     render plain: @product.description_display
@@ -45,7 +45,6 @@ class ProductsController < ApplicationController
   end
 
   def show
->>>>>>> 443ac024a8933692eddc29e4fef18f0f5b8994da
   end
 
   def new
@@ -53,18 +52,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
     Product.create(product_params)
-    redirect_to products_path
-  end
-
-  private
-
-  def product_params
-    params.require(:product).permit(:name, :description, :inventory, :price)
-  end
-end
-=======
     @product = Product.new(product_params)
     if @product.save
       redirect_to products_path
@@ -88,7 +76,7 @@ end
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :inventory, :price)
+      params.require(:product).permit(:name, :price, :inventory, :description)
     end
 end
->>>>>>> 443ac024a8933692eddc29e4fef18f0f5b8994da
+ 

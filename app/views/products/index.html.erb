@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h1>Products</h1>
 <% @products.each do |product| %>
   <h3><%= product.id %>:<%= link_to product.name, product_path(product) %></h3>
@@ -23,7 +22,7 @@ $(function() {
   });
 });
 </script>
-=======
+ 
 <% @products.each do |product| %>
     <h3>
         <%= product.name %>
@@ -34,4 +33,3 @@ $(function() {
     <button class="js-more" data-id="<%= product.id %>">More Info</button>
     <% end %>
         <script type="text/javascript" src="assets/javascripts/index"></script>
->>>>>>> 443ac024a8933692eddc29e4fef18f0f5b8994da
