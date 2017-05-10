@@ -40,7 +40,7 @@ group :development, :test do
   gem 'capybara'
   gem 'faker'
   gem 'shoulda'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 2.0'
 end
 
 group :development do
