@@ -1,1 +1,23 @@
+<h1>Products</h1>
+<%= render 'product' %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      $("#description-" + id).text(data);
+    });
+  
+    
+    $.get("/products/" + id + "/inventory", function(data) {
+ //       alert("Data: " + data.toString());
+      if (JSON.parse(data))
+        $("#inventory-" + id).text("Available");
+      else
+        $("#inventory-" + id).text("Sold Out");
+    });
+  });
+});
+</script>

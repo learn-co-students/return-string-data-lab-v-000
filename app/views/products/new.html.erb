@@ -1,1 +1,7 @@
-
+<%= form_for @product, url:{action: 'create'} do |product_form| %>
+  <%= product_form.label :name %>
+  <%= product_form.text_field :name %><br><br>
+  <%= product_form.label :description %>
+  <%= product_form.text_area(:description, rows: 5, cols: 40) %><br><br>
+  <%= product_form.submit "Add Product" %>
+<% end %>
