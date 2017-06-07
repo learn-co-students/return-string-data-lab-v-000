@@ -26,5 +26,3 @@ use AJAX to bring data to the page.
 is inventory available, display "Available" and if there isn't, display
 "Sold Out".
 7. Make sure tests pass!
-
-**Note:** You will need to have [Firefox](https://www.mozilla.org/en-US/firefox/new/) installed for the feature specs, which use the [selenium-webdriver](https://github.com/SeleniumHQ/selenium/tree/master/rb) gem to test pages with JavaScript requirements.
