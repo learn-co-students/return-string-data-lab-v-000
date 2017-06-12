@@ -1,1 +1,6 @@
-
+<h1>Prouducts Page</h1>
+  <% @products.each do |product| %>
+  <p>    <%=product.name %> <br>
+      <%= truncate( product.description) %> </p>
+<button type="button" class="more-info">More Info</button>      
+  <% end %>
