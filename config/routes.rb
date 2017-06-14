@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get "/products", to: 'products#index'
   get "/products/new", to: 'products#new'
   post "/products" , to: 'products#create'
-  get "/inventory/:id", to: 'products#inventory'
-  get "/description/:id", to: 'products#description'
+  get "products/:id/inventory", to: 'products#inventory'
+  get "products/:id/description", to: 'products#description'
 end
