@@ -1,1 +1,19 @@
-
+<% @products.each do |product| %>
+  <h1> <%= product.name %> </h1>
+  <div id="description-<%=product.id%>"> <%=truncate product.description %></div>
+  <h2><button class="js-more-info" data-id="<%=product.id%>"> More Info </button> <h2>
+<% end %>
+<!-- retrieve rest of the description and get inventory status -->
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more-info").on('click', function() {
+    var id = $(this).data("id");  // get the id from the button's data attribute
+    $.get("/products/" + id + "/description", function(response) {
+      response !== "" ? $("#description-" + id).text(response) : $("#description-" + id).text("Description not available.");   // Replace text of desc-id div
+    });
+    $.get("/products/" + id + "/inventory", function(response) {  // add to text of desc-id div //let desc = $("#description-" + id)[0].innerText
+      response === "true" ? $("#description-" + id).append(" Available") : $("#description-" + id).append(" Sold Out");
+    });
+  });
+});
+</script>
