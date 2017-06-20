@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   def inventory
     @inventory = Product.find(params[:id]).inventory
-    render plain: @inventory > 0
+    render plain: (@inventory != nil && @inventory > 0)
   end
 
   private
