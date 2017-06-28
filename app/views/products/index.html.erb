@@ -16,9 +16,9 @@ $(function () {
     });
     $.get("/products/" + id + "/inventory", function(data) {
       if (data === "true"){
-        $("#description-" + id).append(` Availability: Available`);
+        $("#description-" + id).append(' Availability: Available');
       }else{
-        $("#description-" + id).append(` Availability: Sold Out`);
+        $("#description-" + id).append(' Availability: Sold Out');
       }
     });
   });
