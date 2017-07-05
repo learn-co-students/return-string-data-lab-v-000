@@ -4,6 +4,8 @@ class CreateProducts < ActiveRecord::Migration
       t.string :name
       t.integer :price
       t.timestamps null: false
+      t.string :description
+      t.integer :inventory, null: false, default: 0
     end
   end
 end
