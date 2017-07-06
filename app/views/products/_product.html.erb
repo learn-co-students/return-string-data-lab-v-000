@@ -1,0 +1,8 @@
+<h1><%= product.id %>: <%= product.name %></h2>
+<p>Price: <%= product.price %></p>
+
+<div id="product-<%= product.id %>">Description:
+  <%= truncate product.description %>
+</div>
+
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
