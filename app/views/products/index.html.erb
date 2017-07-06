@@ -14,12 +14,15 @@ $(function () {
   $(".js-more").on('click', function() {
     // get the id from the data attribute
     var id = $(this).data("id");
-    
-    $.get("/products/" + id + "/inventory", function(data) {
-      $("#inventory-" + id).text(data);
+    $.get("/products/" + id + "/inventory", function(inventory) {
+      var inv = "Available";
+      if (inventory === "false") { 
+        inv = "Sold Out";
+      }
+      $("#inventory-" + id).text(inv);
     $.get("/products/" + id + "/description", function(data) {
       $("#description-" + id).text(data);
     });
   });
-});
+})});
 </script>
