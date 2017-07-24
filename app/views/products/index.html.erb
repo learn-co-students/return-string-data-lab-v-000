@@ -1,1 +1,26 @@
+<ul>
+<% @products.each do |p| %> 
+	<li> Name: <%= p.name %> </li>
+	<li> Inventory: <%= p.inventory %> </li>
+	<li id="body-<%= p.id %>"> Description: <%= truncate p.description %>  </li> 
+  <li><% if p.inventory == 0 %> 
+        <%= "Sold Out" %> 
+      <% else %> 
+        <%= "Available" %> 
+      <% end %> 
+  </li>
+	<button class="js-more" data-id="<%= p.id %>">More Info</button> 
+<% end %> 
+</ul>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/body", function(data) {
+      // Replace text of body-id div
+      $("#body-" + id).text(data);
+    });
+  });
+});
+</script>
