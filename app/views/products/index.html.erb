@@ -1,1 +1,17 @@
+<%= render @products %>
 
+<script>
+
+  $(function(){
+    $('.js-product-info-btn').on('click', function(){
+      var id = $(this).data().id;
+      $.get('/products/'+id+'/description', function(data){
+        $('#product-description-'+id).text(data);
+      });
+      $.get('/products/'+id+'/inventory', function(data){
+        $('#product-availible-'+id).text((data=="true")? "Available" : "Sold Out");
+      });
+    });
+  });
+
+</script>
