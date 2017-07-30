@@ -1,1 +1,6 @@
-
+<%= link_to "New Product", new_product_path %>
+<% @products.each do |product| %>
+  <h2><%= product.name %></h2>
+  <p id="info<%= product.id %>"><%= truncate product.description %></p>
+  <%= button_tag "More Info", class: "js-more", data: {id: product.id} %>
+<% end %>
