@@ -1,1 +1,11 @@
-
+<%= form_for @product do |f| %>
+ <h4/><%= f.label :name %>
+ <%= f.text_field :name %>
+ <h4/><%= f.label :price %>
+ <%= f.text_field :price %>
+ <h4/><%= f.label :inventory_count %>
+ <%= f.text_field :inventory %>
+ <h4><%= f.label :description %><br>
+ <%= f.text_area :description %></h4>
+ <%= f.submit %>
+<% end %>
