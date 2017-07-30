@@ -1,1 +1,21 @@
+<h2>All Products</h2>
 
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Availability</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td id="available_<%= product.id %>"></td>
+      <td id="description_<%= product.id %>"></td>
+      <td>
+        <button onclick="get_info(this)", data-id=<%= product.id %>> More Info</button>
+      </td>
+    </tr>
+  <% end %>
+</table>
