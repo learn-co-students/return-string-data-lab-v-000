@@ -24,12 +24,18 @@ class ProductsController < ApplicationController
     end
 
     def inventory
-    #     if inventory != 0
-    #         true
-    #     else
-    #         false
-    # end
-end
+        @product = Product.find(params[:id])
+        if  @product.inventory != 0
+            render plain: "true"
+        else
+            render plain: "false"
+        end
+    end
+
+    def description
+        @product = Product.find(params[:id])
+        render plain: @product.description
+    end
 
     private
 
