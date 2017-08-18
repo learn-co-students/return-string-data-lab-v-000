@@ -1,1 +1,26 @@
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
 
+<script>
+  function fetchMoreInfo() {
+    console.log(this);
+    const id = this.dataset.id;
+    fetch(`products/${id}/description`)
+    .then(blob => blob.text())
+    .then((data) => {
+      document.querySelector(`#product-${id}`).innerHTML = `<p>${data}</p>`;
+    });
+
+    fetch(`/products/${id}/inventory`)
+    .then(blob => blob.json())
+    .then((data) => {
+      const text = data === true ? 'Available' : 'Sold Out';
+      document.querySelector(`#product-${id}`).innerHTML += `<p>${text}</p>`;
+    });
+  }
+
+  const allButtonNodes = document.querySelectorAll('.js-more');
+  const allButtons = Array.from(allButtonNodes);
+  allButtons.forEach(button => button.addEventListener('click', fetchMoreInfo));
+</script>
