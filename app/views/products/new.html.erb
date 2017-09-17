@@ -1,1 +1,25 @@
+<%= form_for @product do |p_builder| %>
+  <div class="field">
+  	<%= p_builder.label :name %><br>
+  	<%= p_builder.text_field :name %>
+  </div>
 
+  <div class="field">
+  	<%= p_builder.label :description %><br>
+  	<%= p_builder.text_field :description %>
+  </div>
+  
+  <div class="field">
+  	<%= p_builder.label :price %><br>
+  	<%= p_builder.number_field :price %>
+  </div>
+
+  <div class="field">
+  	<%= p_builder.label :inventory %><br>
+  	<%= p_builder.number_field :inventory %>
+  </div>
+
+  <div class="submit">
+  	<%= p_builder.submit %>
+  </div>
+<% end %>
