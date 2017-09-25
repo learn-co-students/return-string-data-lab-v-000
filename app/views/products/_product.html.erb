@@ -1,0 +1,7 @@
+<h1><%= product.id %>: <%= product.name %> - $<%= product.price %></h1>
+<div id="body-<%= product.id %>">
+  <%= truncate product.description %>
+</div>
+<div id="inventory-<%= product.id %>"></div>
+
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
