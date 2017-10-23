@@ -1,1 +1,9 @@
+<h1>Add New Product</h1>
 
+<%= form_for @product do |f| %>
+  name: <%= f.text_field :name %><br>
+  price: <%= f.number_field :price %><br>
+  description: <%= f.text_field :description %><br>
+  inventory: <%= f.number_field :inventory %><br>
+  <%= f.submit 'Add New Product' %>
+<% end %>
