@@ -1,1 +1,5 @@
-
+<%if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+<h3>New Product</h3>
+<%= render 'form' %>
