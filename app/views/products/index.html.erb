@@ -1,1 +1,26 @@
+<h1> All Products </h1>
+<ol>
+<% @products.each do |product| %>
+	<li><%= product.name %><br>
+	<div id="product-<%= product.id %>"><%= truncate product.description %></div>
+	<button class="js-more" data-id="<%= product.id %>">More Info...</button></li><br>
+<% end %>
+</ol>
 
+<script type="text/javascript" charset="utf-8">
+	$(".js-more").on("click", function() {
+		const id = $(this).data("id");
+		$.get(`/products/${id}/description`, function(desc) {
+			debugger //knows desc and id
+			$.get(`/products/${id}/inventory`, function(inv) {
+				debugger //does not know about desc or id. How can function(desc) have access to id, but function(inv) does not???
+				let inventory = ""
+				if (inv === "true") {
+					inventory = "Available"
+				} else {
+					inventory = "Sold Out"
+				}
+			})
+		}) 
+	})
+</script>
