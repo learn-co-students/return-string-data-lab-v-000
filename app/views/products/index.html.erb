@@ -1,1 +1,28 @@
+<h1> All Products </h1>
+<ol>
+<% @products.each do |product| %>
+	<li><%= product.name %><br>
+	<div id="product-<%= product.id %>"><%= truncate product.description %></div>
+	<button class="js-more" data-id="<%= product.id %>">More Info</button></li><br>
+<% end %>
+</ol>
 
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$(".js-more").on("click", function() {
+			var id = $(this).data("id")
+			$.get("/products/" + id + "/description", function(desc) {
+				$.get("/products/" + id + "/inventory", function(inv) {
+					var inventory = ""
+					if (inv === "true") {
+						inventory = "Available"
+					} else {
+						inventory = "Sold Out"
+					}
+					var productDetails = "<p>" + desc + "</p><p>" + inventory + "</p>"
+					$("#product-" + id).html(productDetails)
+				});
+			});
+		});
+	});
+</script>
