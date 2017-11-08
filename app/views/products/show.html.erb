@@ -1,0 +1,8 @@
+<h2><%= @product.id %>: <%= @product.name %></h2>
+<p><%= @product.description %></p>
+<p><%= @product.inventory %></p>
+<% if @product.inventory === 0 %>
+  <p>Sold Out</p>
+  <% else %>
+  <p> Available </p>
+<% end %>
