@@ -1,0 +1,15 @@
+current directory: /home/jon/code/labs/return-string-data-lab-v-000/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+/usr/bin/ruby2.3 -r ./siteconf20171103-3298-v8d7ja.rb extconf.rb 
+creating Makefile
+
+current directory: /home/jon/code/labs/return-string-data-lab-v-000/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /home/jon/code/labs/return-string-data-lab-v-000/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/jon/code/labs/return-string-data-lab-v-000/vendor/bundle/ruby/2.3.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20171103-3298-1xef64y
