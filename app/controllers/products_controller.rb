@@ -8,12 +8,13 @@ class ProductsController < ApplicationController
     end
 
     def create
-
+        @product = Product.new(product_params)
+        redirect_to products_path
     end
 
     private
     def product_params
-        params.require(:user).permit(:name, :description)
+        params.require(:user).permit(:name, :description, :price, :inventory)
     end
 
 

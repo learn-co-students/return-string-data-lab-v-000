@@ -1,3 +1,17 @@
 <%# Create the new product page so you can add new products, otherwise the rest of this might be kind of underwhelming! %>
-
+<h1>New Product</h1>
+<%= form_for @product do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br />
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <br />
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <br />
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %>
+  <%= f.submit "submit" %>
+<% end %>
 
