@@ -1,0 +1,6 @@
+<%# Create an index page for all products that displays name and a truncated description, but not inventory. %>
+<h1><%= product.id %> <%= product.name %></h1>
+<div id="description-<%= product.id %>"><%= truncate(product.description) %></div>
+<div id="inventory-<%= product.id %>"></div>
+
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
