@@ -1,1 +1,8 @@
-
+<div class="container">
+  <ol>
+    <% @products.each do |product| %>
+      <h3><li><%=  product.name %></li></h3>
+      <p><%=  truncate product.description %></p>
+    <% end %>
+  </ol>
+</div>
