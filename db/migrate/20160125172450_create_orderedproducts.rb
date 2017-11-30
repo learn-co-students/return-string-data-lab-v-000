@@ -3,6 +3,7 @@ class CreateOrderedproducts < ActiveRecord::Migration
     create_table :ordered_products do |t|
       t.integer :product_id
       t.integer :order_id
+     
 
       t.timestamps null: false
     end
