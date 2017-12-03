@@ -1,1 +1,19 @@
 
+<div id="products">
+  <!--t.string :name
+  #t.integer :price
+  #t.string :description
+  #t.integer :inventory -->
+  <h2>Products</h2>
+  <table>
+    <tr>
+      <th>Produc Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>More Info</th>
+      <th>Inventory</th>
+      <th>Description</th>
+    </tr>
+    <%= render(@products) || "No Products" %>
+  </table>
+</div>
