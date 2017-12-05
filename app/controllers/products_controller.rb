@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
-    redirect_to root_path
+    redirect_to products_path
   end
 
   private
