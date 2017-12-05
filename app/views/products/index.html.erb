@@ -22,7 +22,8 @@ $(function () {
     var id = $(this).data("id");
     $.get("/products/" + id + "/inventory", function(data) {
       // Replace text of body-id div
-      $("#body-" + id).text(data);
+      if("false"){
+        $("#body-" + id).text("Sold Out");
     }
     });
   });
