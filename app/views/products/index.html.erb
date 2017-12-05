@@ -7,25 +7,13 @@ $(function () {
   $(".js-more").on('click', function() {
     //get the id from data attribute above
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(data) {
-      // Replace text of body-id div
-      $("#body-" + id).text(data);
-    });
-    });
+    $.get("/products/" + id + "/description", function(description) {
+        $.get("/products/" + id + "/inventory", function(inventory) {
+          inventoryValue = "Available"
+          if(inventoryValue === "false"){
+            inventoryValue = "Sold Out"
+          }
+      $("#body-" + id).html(`<strong>` + descriptionValue + ` | ` +inventoryValue + `</strong>`);
+    })
 });
-</script>
-
-<script type="text/javascript" charset = "utf-8">
-$(function () {
-  $(".js-more").on('click', function() {
-    //get the id from data attribute above
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/inventory", function(data) {
-      alert(data)
-      // Replace text of body-id div
-      $("#body-" + id).text(data)
-    });
-    });
-});
-
 </script>
