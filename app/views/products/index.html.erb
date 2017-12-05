@@ -21,9 +21,10 @@ $(function () {
     //get the id from data attribute above
     var id = $(this).data("id");
     $.get("/products/" + id + "/inventory", function(data) {
+      alert(id)
       // Replace text of body-id div
       if (data <= 0){
-        $("#inventory-" + id).text("Sold Out")
+        $("#inventory-" + id).text("false")
       } else {
       $("#body-" + id).text("true");
     }
