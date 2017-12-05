@@ -22,7 +22,11 @@ $(function () {
     var id = $(this).data("id");
     $.get("/products/" + id + "/inventory", function(data) {
       // Replace text of body-id div
+      if (data <= 0){
+        $("#inventory-" + id).text("Sold Out")
+      } else {
       $("#inventory-" + id).text(data);
+    }
     });
   });
 });
