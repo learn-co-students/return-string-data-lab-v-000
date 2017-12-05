@@ -13,7 +13,8 @@ class ProductsController < ApplicationController
     if product.inventory > 0
       product.inventory = "true"
     else
-      product.inventory = "false"
+      product.inventory = "Sold Out"
+    end
     render plain: product.inventory
   end
 
