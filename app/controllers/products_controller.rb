@@ -8,4 +8,14 @@ class ProductsController < ApplicationController
     render plain: product.description
   end
 
+  def new
+    @product = Product.new
+  end
+
+
+  private
+
+  def product_params
+    params.require(:product).permit()
+
 end
