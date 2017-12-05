@@ -18,8 +18,8 @@ end
 5.times do
   Invoice.create
 end
+
 10.times do
   order = Order.create(:customer_id => Customer.all.collect(&:id).sample, :invoice_id => Invoice.all.collect(&:id).sample)
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
-
