@@ -14,3 +14,16 @@ $(function () {
   });
 });
 </script>
+
+<script type="text/javascript" charset = "utf-8">
+$(function () {
+  $(".js-inventory").on('click', function() {
+    //get the id from data attribute above
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(data) {
+      // Replace text of body-id div
+      $("#inventory-" + id).text(data);
+    });
+  });
+});
+</script>
