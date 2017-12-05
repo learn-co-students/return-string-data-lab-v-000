@@ -7,7 +7,7 @@ $(function () {
   $(".js-more").on('click', function() {
     //get the id from data attribute above
     var id = $(this).data("id");
-    $.get("/products/" + id + "/body", function(data) {
+    $.get("/products/" + id + "/description", function(data) {
       // Replace text of body-id div
       $("#body-" + id).text(data);
     });
@@ -21,12 +21,8 @@ $(function () {
     //get the id from data attribute above
     var id = $(this).data("id");
     $.get("/products/" + id + "/inventory", function(data) {
-      alert(id)
       // Replace text of body-id div
-      if (data <= 0){
-        $("#inventory-" + id).text("false")
-      } else {
-      $("#body-" + id).text("true");
+      $("#body-" + id).text(data);
     }
     });
   });

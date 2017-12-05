@@ -3,14 +3,15 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def body
+  def description
     product = Product.find(params[:id])
     render plain: product.description
   end
 
   def inventory
     product = Product.find(params[:id])
-    render plain: product.inventory
+    product.inventory > 0 ? "true" : "false"
+
   end
 
   def new
