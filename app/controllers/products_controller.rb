@@ -26,12 +26,22 @@ class ProductsController < ApplicationController
     redirect_to product_path(@product)
   end
 
+  def inventory
+    product = Product.find(params[:id])
+    render plain: product.inventory > 0 ? true : false
+  end
+
+  def description
+    product = Product.find(params[:id])
+    render plain: product.description
+  end
+
 private
   def set_product
     @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :description, :inventory)
   end
 end
