@@ -3,7 +3,7 @@
   <% @products.each do |product| %>
     <li>
       <%= render partial: "products/product", locals: {product: product} %>
-      <%= button_tag("More", data: {id: product.id }, class: "js-more" ) %>
+      <%= button_tag("More Info", data: {id: product.id }, class: "js-more" ) %>
     </li>
   <% end %>
   </ol>
@@ -15,6 +15,15 @@
       let id = $(this).data("id");
       $.get("/products/" + id + "/body").success(function(data){
         $("#body-" + id).html("<p>" + data + "</p>");
+      })
+      $.get("/products/" + id + "/inventory").success(function(data){
+        if(data === "true"){
+          $("#inventory-" + id).html("Avaliable")
+        } else if (data === "false") {
+          $("#inventory-" + id).html("Sold Out")
+        } else {
+          $("#inventory-" + id).html("Availability Unknown")
+        }
       })
     })
   })

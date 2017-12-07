@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to product_path(@product)
+      redirect_to products_path
     else
       render 'product/new'
     end
@@ -24,6 +24,11 @@ class ProductsController < ApplicationController
   def body
     @product = Product.find(params[:id])
     render plain: @product.description
+  end
+
+  def inventory
+    @product = Product.find(params[:id])
+    render plain: !!(@product.inventory > 0)
   end
 
 
