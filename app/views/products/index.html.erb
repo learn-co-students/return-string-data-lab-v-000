@@ -10,21 +10,22 @@
 
 
 <script type="text/javascript" charset="UTF-8">
-  $(document).ready(function(){
-    $(".js-more").on('click', function(e){
-      let id = $(this).data("id");
-      $.get("/products/" + id + "/body").success(function(data){
-        $("#body-" + id).html("<p>" + data + "</p>");
+document.addEventListener("DOMContentLoaded", function(event) {
+    jQuery(".js-more").on('click', function(e){
+      let id = jQuery(this).data('id');
+      jQuery.get("/products/" + id + "/description").success(function(data){
+        jQuery("#body-" + id).html(data);
       })
-      $.get("/products/" + id + "/inventory").success(function(data){
+      jQuery.get("/products/" + id + "/inventory").success(function(data){
         if(data === "true"){
-          $("#inventory-" + id).html("Avaliable")
+          jQuery("#inventory-" + id).html("Avaliable")
         } else if (data === "false") {
-          $("#inventory-" + id).html("Sold Out")
+          jQuery("#inventory-" + id).html("Sold Out")
         } else {
-          $("#inventory-" + id).html("Availability Unknown")
+          jQuery("#inventory-" + id).html("Availability Unknown")
         }
       })
+      e.preventDefault()
     })
   })
 </script>
