@@ -1,1 +1,31 @@
 
+  <ol>
+  <% @products.each do |product| %>
+    <li>
+      <%= render partial: "products/product", locals: {product: product} %>
+      <%= button_tag("More Info", data: {id: product.id }, class: "js-more" ) %>
+    </li>
+  <% end %>
+  </ol>
+
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener("DOMContentLoaded", function(event) {
+    jQuery(".js-more").on('click', function(e){
+      let id = jQuery(this).data('id');
+      jQuery.get("/products/" + id + "/description").success(function(data){
+        jQuery("#body-" + id).html(data);
+      })
+      jQuery.get("/products/" + id + "/inventory").success(function(data){
+        if(data === "true"){
+          jQuery("#inventory-" + id).html("Avaliable")
+        } else if (data === "false") {
+          jQuery("#inventory-" + id).html("Sold Out")
+        } else {
+          jQuery("#inventory-" + id).html("Availability Unknown")
+        }
+      })
+      e.preventDefault()
+    })
+  })
+</script>
