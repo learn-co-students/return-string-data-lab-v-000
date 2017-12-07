@@ -1,4 +1,4 @@
-<div>
+
   <ol>
   <% @products.each do |product| %>
     <li>
@@ -7,16 +7,15 @@
     </li>
   <% end %>
   </ol>
-</div>
+
 
 <script type="text/javascript" charset="UTF-8">
   $(document).ready(function(){
     $(".js-more").on('click', function(e){
       let id = $(this).data("id");
       $.get("/products/" + id + "/body").success(function(data){
-      alert(data);
+        $("#body-" + id).html("<p>" + data + "</p>");
       })
     })
   })
-
 </script>
