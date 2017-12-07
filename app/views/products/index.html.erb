@@ -1,1 +1,5 @@
-
+<ol>
+<% @products.each do |product| %>
+  <li><%= render partial: "products/product", locals: {product: product} %></li>
+<% end %>
+</ol>
