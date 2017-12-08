@@ -2,21 +2,39 @@
   <%= render partial: "product", locals: {product: product} %>
 <% end %>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(data) {
-      $("#desc-" + id).text(data);
+    $.get("/products/" + id + "/description", function(desc) {
+      $("#desc-" + id).html("<p>" + desc + "</p>");
+      $.get("/products/" + id + "/inventory", function(inv) {
+        let status = ""
+        if (inv == "true") {
+          status = "Status: Available"
+        } else {
+          status = "Status: Sold Out"
+        }
+        $("#avail-" + id).html("<p>" + status + "</p>");
+      });
     });
-    $.get("/products/" + id + "/inventory", function(data) {
-      let status = ""
-      if (data == "true") {
-        status = "Status: Available"
-      } else {
-        status = "Status: Sold Out"
-      }
-      $("#avail-" + id).text(status);
+  });
+});
+</script> -->
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
     });
   });
 });
