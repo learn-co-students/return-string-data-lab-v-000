@@ -17,12 +17,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  def desc
+  def description
     product = Product.find(params[:id])
     render plain: product.description
   end
 
-  def available?
+  def inventory
     product = Product.find(params[:id])
     available = product.inventory > 0
     render plain: available
