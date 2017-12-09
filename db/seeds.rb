@@ -23,3 +23,6 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+Product.all.each do |product|
+  product.update(description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec nulla at sapien mollis tempus nec eu massa. Proin tempus nibh lobortis sapien accumsan, sit amet efficitur nibh feugiat. Nullam faucibus enim mi, venenatis pharetra nunc luctus sed. Mauris convallis nunc dolor, non viverra mauris vestibulum ut. Fusce gravida venenatis erat nec sollicitudin. Donec dictum sodales eros in lobortis. Etiam nec erat ipsum. Proin auctor tristique pellentesque. In quis purus eget odio lacinia rutrum. Pellentesque porta nisi vitae iaculis tincidunt. Nunc volutpat dui imperdiet nisi auctor laoreet. Donec in enim imperdiet urna interdum eleifend. Nunc porttitor metus enim. Fusce porttitor purus vulputate consequat dapibus. Etiam semper nisi a sapien auctor, at consectetur augue dictum.")
+end
