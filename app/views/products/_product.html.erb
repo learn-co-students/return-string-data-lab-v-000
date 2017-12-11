@@ -1,0 +1,13 @@
+
+<div>
+    <h3><%= product.name %></h3>
+    <ul>
+        <li>Price: $<%= product.price %></li>
+        <li>In stock: <%= product.inventory %></li>
+    </ul>
+    <div>
+        <p id="desc-<%=product.id%>"></p>
+        <p id="stock-<%=product.id%>"></p>
+    </div>
+    <button class="js-more" data-id="<%=product.id%>" >More Info</button>
+</div>

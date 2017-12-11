@@ -1,1 +1,25 @@
 
+<%= render(@products) %>
+
+<script>
+    $(function () {
+        $(".js-more").on("click", function(){
+
+            let id = $(this).data("id")
+            $.get("inventory", {id: id}, (function(data){
+                debugger
+                if(data === "true"){
+                    document.getElementById(`stock-${id}`).innerHTML = "Available"
+                }
+                else{
+                    document.getElementById(`stock-${id}`).innerHTML = "Sold Out"
+                }
+            })
+            )
+            $.get("description", {id: id})
+            .done(function(data){
+                document.getElementById(`desc-${id}`).innerHTML = data
+            })
+        })
+    })
+</script>
