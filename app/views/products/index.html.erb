@@ -6,23 +6,33 @@
   <% end %>
 </ul>
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-more").on('click', function() {
-    // get the id from the data attribute
-    var id = $(this).data("id");
+  $(function () {
+    $(".js-more").on('click', function() {
+      // get the id from the data attribute
+      var id = $(this).data("id");
+      var total_product_info =  "";
 
-    $.get("/products/" + id + "/description", function(data) {
-      $("#body-" + id).text(data);
+      $.get("/products/" + id + "/description", function(data) {
+        total_product_info += data
+        debugger;
+        alert(total_product_info)
+      });
+
+
+      $.get("/products/" + id + "/inventory", function(data) {
+        if(data === 'true'){
+          total_product_info += " - Available";
+          debugger;
+
+          alert(total_product_info)
+        } else {
+          total_product_info += " - Sold Out";
+        }
+      });
+      debugger;
+
+      alert(total_product_info)
+      $("#body-" + id).text(total_product_info);
     });
-
-    $.get("/products/" + id + "/inventory", function(data) {
-      if(data === 'true'){
-        $("#body-" + id).append(" - Available");
-      } else {
-        $("#body-" + id).append(" - Sold Out");
-      }
-    });
-
   });
-});
 </script>
