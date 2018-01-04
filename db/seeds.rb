@@ -23,3 +23,6 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+product = Product.find_or_initialize_by(name: 'tv')
+product.description = "aslkdjf asld;fkja;lskdjf;lk asd;flij asleijf ;alisj v;lians ;vlei a;lsivnl;ia s;ldvi as;lidjv ;lais jv;lia js;lvija;lsiej v;liajs e;lvij a;sleivj ;alsiejv ;alisej v;lais jv;lija e;lfij a;lsiefj ;aliejf "
+product.save!
