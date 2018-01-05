@@ -1,1 +1,25 @@
+<div class="new-product-form">
+  <%= form_for @product, url: products_url, method: :post do |f| %>
+  <div>
+    <%= f.label :name %> <br>
+    <%= f.text_field :name %>
+  </div>
 
+  <div>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :inventory %><br>
+    <%= f.number_field :inventory%>
+  </div>
+
+  <%= f.submit %>
+  <% end %>
+</div>

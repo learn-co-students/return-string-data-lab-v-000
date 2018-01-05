@@ -1,1 +1,27 @@
+<div class="display-products">
+  <% @products.each do |product| %>
+    <%= render partial: "product", locals: { product: product } %>
+  <% end %>
+</div>
 
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".js-more").on('click', function() {
+      var id = $(this).data('id');
+      var description_url = "/products/" + id + "/description";
+      var inventory_url = "/products/" + id + "/inventory";
+      $.get(description_url, function(description) {
+        // add message to description depending on if inventory is true or false
+        $.get(inventory_url, function(inventory) {
+          var inventoryText = "<strong>Available</strong>";
+          if (inventory === "false") {
+            inventoryText = "<strong>Sold Out</strong>";
+          }
+          var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+          $("#product-" + id).html(descriptionText);
+       });
+     });
+    });
+  });
+
+</script>
