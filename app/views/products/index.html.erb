@@ -1,1 +1,43 @@
+<%= render partial: 'product', collection: @products, as: :product %>
 
+<!-- The solution: much cleaner; tests also hate string interpolation?? -->
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
+
+<!-- Mine work perfectly fine in browser, but don't pass the test for some reason...
+1. it may have really hated the string interpolation...
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    $(".js-more").on('click', function() {
+      // debugger;
+      let id = $(this).data("id");
+      let availability = "";
+      $.get(`/products/${id}/description`, function(description) {
+        $(`#product-${id}`).html(description);
+      });
+      $.get(`/products/${id}/inventory`, function(inventory) {
+        if (inventory === "true") {
+          availability = "Available";
+        } else {
+          availability = "Sold Out";
+        }
+        $(`#product-${id}`).append(`<li>${availability}</li>`);
+      });
+    }); //onclick
+  });
+</script> -->
