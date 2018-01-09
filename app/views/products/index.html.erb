@@ -5,19 +5,15 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    
-    $(".js-more").on('click', function() {
+    $(".js-more").on("click", function() {
       var id = $(this).data("id");
       $.get("/products/" + id + "/description", function(description) {
-        // Replace text of description-id div
         $.get("products/" + id + "/inventory", function(inventory) {
-          let inventoryResult = "Available"
+          var inventoryResult = "Available";
           if (inventory === "false" ) {
             inventoryResult = "Sold Out";
-          } else {
-            inventoryResult = "Available";
           }
-          let descriptionText = description + "<br>" + inventoryResult
+          var descriptionText = description + "<br>" + inventoryResult
           $("#description-" + id).html(descriptionText)
         });
       });
