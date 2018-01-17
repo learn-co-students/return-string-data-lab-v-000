@@ -1,1 +1,27 @@
+<% @products.each do |product| %>
+  <%= product.name %>
+  <div id= "description-<%= product.id %>"><%= truncate product.description %></div>
+  <div id= "inventory-<%= product.id %>"></div>
 
+<button class="js-more-info" data-id="<%= product.id %>">More Info...</button>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more-info").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(data) {
+      if (data === "true") {
+        $("#inventory-" + id).text("Available");
+      } else {
+        $("#inventory-" + id).text("Sold Out");
+      }
+    });
+    $.get("/products/" + id + "/description", function(data) {
+      debugger;
+      $("#description-" + id).text(data);
+    });
+  });
+});
+</script>
