@@ -1,1 +1,23 @@
+<% @products.each do |product| %>
+  <%= render partial: 'product', locals: {product: product} %>
+<% end %>
+
+<script type='text/javascript' charset='utf-8'>
+  $(function () {
+    $(".js-more").on('click', function() {
+      var id = $(this).data("id");
+      $.get("/products/" + id + '/description', function(description_data) {
+        $.get("/products/" + id + '/inventory', function(inventory_data){
+          if(inventory_data === 'true'){
+            var inventory_status = description_data + "Availability: Available";
+          } else {
+            var inventory_status = description_data + "Availability: Sold Out";
+          }
+          $('#body-' + id).text(inventory_status);
+        });
+      });
+    });
+  });
+  </script>
+
 
