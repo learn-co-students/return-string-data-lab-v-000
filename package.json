@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "geckodriver": "^1.5.0"
+  }
+}
