@@ -1,0 +1,5 @@
+<li><%= p.id%>. <%= p.name %><br>
+  <div id="product-<%= p.id %>"><%= truncate p.description %>
+  </div>
+</li>
+<button class="js-more" data-id="<%=p.id%>">More Info</button>
