@@ -1,1 +1,40 @@
+<h1>PRODUCTS!</h1>
+<% if @products %>
+  <ul>
+    <% @products.each do |product| %>
+      <li id='prod-<%= product.id %>-li'>
+        <%= product.name %>:<br>
+        <span id='prod-<%= product.id %>-desc'><%= truncate product.description %></span><br>
+      </li>
+    <button class='js-more' data-id='<%= product.id %>'>More Info</button>
+    <% end %>
+  </ul>
+<% end %>
 
+<script type='text/javascript' charset='utf-8'>
+
+$(function(){
+  $('.js-more').on('click', function(){
+    //get the 'id' of the product
+    var id = $(this).data('id');
+    //get, and set the span to, the new description
+    $.get('/products/' + id + '/description', function(data){
+      $('#prod-' + id + '-desc').text(data);
+    });
+    //get the inventory results and append an element
+    $.get('/products/' + id + '/inventory', function(stock){
+      var spanText = '<span><strong>';
+      if (stock === 'true'){
+        spanText += 'Available';
+      } else {
+        spanText += 'Sold Out';
+      }
+      spanText += '</strong></span>';
+      $('#prod-' + id + '-li').append(spanText)
+    });
+    //remove the button to prevent appending more stock spans
+    $(this).remove();
+  });
+});
+
+</script>
