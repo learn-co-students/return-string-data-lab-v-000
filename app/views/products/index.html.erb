@@ -1,1 +1,27 @@
-
+<%@products.each do |product| %>
+<script type="text/javascript" charset="utf-8">
+   $(function() {
+     $(".js-more").on('click', function() {
+       var id = $(this).data("id");
+       $.get("/products/" + id + "/description", function(description) {
+         $.get("/products/" + id + "/inventory", function(inventory) {
+           var inventoryData = "Available";
+           if(inventory === "false"){
+             inventoryData = "Sold Out";
+           }
+           var data = inventoryData + "<p>" + description + "</p>";
+           $("#body-" + id).html(data);
+         });
+       });
+     });
+   });
+ </script>
+  <div class="info-box">
+  Name: <%=product.name %><br>
+  Description: <%=truncate product.description%><br>
+  <%=product.id%>
+    <button class="js-more" data-id="<%= product.id %>">More...</button>
+    <br>
+    <br>
+      </div>
+  <% end %>
