@@ -1,1 +1,26 @@
+<h3>Products</h3>
+  <ol>
+    <% @products.each do |product|%>
+
+    <li><%=product.name%></li><br>
+    <p id="description-<%= product.id %>"><%=truncate product.description%></p><br>
+    <p id="inventory-<%= product.id %>">>Item Inventory: <%= product.inv_available %></p><br>
+    
+    <button class="js-more" data-id="<%= product.id %>">More Info</button>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      // Replace text of body-id div
+      $("#description-" + id).text(data);
+    });
+  });
+});
+</script>
+    <%end%>
+  </ol>
+
+
 
