@@ -1,0 +1,38 @@
+<h3><%= product.name %></h3>
+<div id="body-<%= product.id %>">
+  <p><%= truncate product.description %></p>
+</div>
+
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+
+    // Fetch Description
+    $.ajax({
+      url: '/products/' + id + '/description',
+      success: function(description) {
+        // Append Description
+        $("#body-" + id).text(description)
+      }
+    });
+
+    // Fetch Inventory
+    $.ajax({
+      url: '/products/' + id + '/inventory',
+      success: function(inventory) {
+        // Append Inventory
+        if (inventory == "true") {
+          // available
+          $("#body-" + id).append(" Available");
+        } else {
+          // Sold Out
+          $("#body-" + id).append(" Sold Out");
+        }
+      }
+    });
+  });
+});
+</script>
