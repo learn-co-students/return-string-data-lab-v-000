@@ -1,0 +1,5 @@
+<li><%= product.name %></li>
+<div id="description-<%= product.id %>"><%= truncate product.description%></div>
+<% #binding.pry %>
+<div id="inventory-<%= product.id %>"><%= product_helper_inventory(product) %></div>
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
