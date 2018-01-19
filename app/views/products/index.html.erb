@@ -1,1 +1,43 @@
+Product Index:
+<% @products.each do |prod| %>
+<div id="test"> hi</div>
+  <table>
+    <tr>
+      <td>Name:</td> <td><%= prod.name %></td>
+    </tr>
+    <tr>
+      <td>Price:</td> <td><%= prod.price %></td>
+    </tr>
+    <tr>
+      <td>Inventory:</td> <td><%= prod.inventory %></td>
+    </tr>
+    <tr>
+      <td>Availability:</td> <td><div id="av-<%= prod.id %>"><%=  %></div></td>
+    </tr>
+    <tr>
+      <td>Description:</td> <td><div id="description-<%= prod.id %>"><%= truncate(prod.description, length: 10) %></div></td>
+    </tr>
+    <tr>
+      <td><button class="js-more" data-id="<%= prod.id %>">More Info</button></td>
+    </tr>
+  </table>
+<% end %>
 
+<script type='text/javascript' charset='uft-8'>
+  $(function () {
+    $('.js-more').on('click', function(event) {
+      var id= $(this).data('id');
+      $.get('/products/' + id + '/description', function(desc_data) {
+        $.get('/products/' + id + '/inventory', function(inv_data) {
+          if(inv_data == 'true') {
+            var stock_status = "Available!"
+          }else{
+            var stock_status = "Sold Out!!"
+          }
+          $('#av-' + id).text(stock_status);
+          $('#description-' + id).text(desc_data);
+        });
+      });
+    });
+  });
+</script>
