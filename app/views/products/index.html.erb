@@ -1,1 +1,46 @@
+<h2>Products</h2>
+<ul>
+  <% @products.each do |product| %>
+    <p><%= product.name %>:
+      <div id="description-<%= product.id %>"><%= truncate product.description %></div>
+      <button class="js-more" data-id="<%= product.id %>">More Info</button></p>
+  <% end %>
+</ul>
 
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#description-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
+
+<!-- Works when I test in the browser but test fails
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      // Replace text of description-id div
+      $("#description-" + id).text(data);
+    });
+    $.get("/products/" + id + "/inventory", function(data) {
+      if (data === "true") {
+        $("#description-" + id).append(" Available");
+      } else {
+        $("#description-" + id).append(" Sold Out");
+      }
+    })
+  });
+});
+</script> -->
