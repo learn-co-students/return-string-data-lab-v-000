@@ -1,1 +1,28 @@
+<h1>View All Products</h1>
 
+<% @products.each do |product| %>
+  <%= link_to product.name, product_path(product) %> <br>
+  <p id="description-<%= product.id %>"><%= truncate product.description %></p>
+  <p id="inventory-<%= product.id %>"></p>
+  <button class="js-more" data-id="<%= product.id %>">More Info</button> <br> <br>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-more").on('click', function () {
+      // get the id from the data attribute
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function (data) {
+        // Replace description text of description-id p
+        $("#description-" + id).text(data);
+      });
+      $.get("products/" + id + "/inventory", function (data) {
+        // Find out if inventory is available
+        if (data === "true")
+          $("#inventory-" + id).text("Available");
+        else
+          $("#inventory-" + id).text("Sold Out");
+      });
+    });
+  });
+</script>

@@ -23,3 +23,5 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+Product.create(name: 'iPod', description: 'A portable music player to get you in the groove for whatever you feel like doing.', price: 300, inventory: 3)
+
