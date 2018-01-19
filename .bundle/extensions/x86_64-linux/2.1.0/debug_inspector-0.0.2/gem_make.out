@@ -1,0 +1,12 @@
+/usr/local/opt/rbenv/versions/2.1.5/bin/ruby -r ./siteconf20160301-25325-4v07pc.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.so ./.gem.20160301-25325-1p2c5kd
+installing default debug_inspector libraries

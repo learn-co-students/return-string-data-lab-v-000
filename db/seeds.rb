@@ -23,3 +23,8 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+Product.all.each do |product|
+  product.description = Faker::Lorem.paragraph
+  product.inventory = 3
+  product.save
+end
