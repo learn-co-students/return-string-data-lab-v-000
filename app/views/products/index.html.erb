@@ -1,1 +1,30 @@
+<%= render(@products) || "No Products"  %>
 
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('.js-more-info').click(function() {
+			var id = $(this).data('id');
+			description(id);
+			inventory(id);
+		})
+	})
+	
+	function description(id) {
+		$.get('products/' + id + '/description', function(data) {
+			$('#description-' + id).text(data);
+		});
+	}
+
+	function inventory(id) {
+		$.get('products/' + id + '/inventory', function(data) {
+			var invenData;
+			if (data === 'true') {
+				invenData = "Available";
+			} else {
+				invenData = "Sold Out";
+			};
+			$('#inventory-' + id).text(invenData);
+		});
+	}
+
+</script>
