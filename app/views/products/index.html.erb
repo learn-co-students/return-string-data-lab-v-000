@@ -1,1 +1,19 @@
+<%= render(@products) || "There are no products available." %>
 
+<script>
+  $(function(){
+    $(".js-more").on("click", function(){
+        var id = this.id
+        $.get("/products/" + id + "/description", ourId=id, function(response){
+          $("#" + ourId + "-details")[0].innerHTML = response
+        })
+        $.get("/products/" + id + "/inventory", function(response){
+          if (response == "true"){
+            $("#" + ourId + "-details")[0].innerHTML += "<br>" + "Available"
+          } else {
+            $("#" + ourId + "-details")[0].innerHTML += "<br>" + "Sold Out"}
+        })
+
+    }) 
+  })
+</script>
