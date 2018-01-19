@@ -1,1 +1,26 @@
+<% @products.each do |product| %>
+  <%= content_tag :div, id: "product-#{product.id}" do %>
+    <%= content_tag :h3, product.name %>
+    <%= content_tag :p, truncate(product.description), id: "desc-#{product.id}" %>
+    <%= content_tag :button, "More Info", class: "js-more-info", data: {id: product.id} %>
+  <% end %>
+<% end %>
 
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    
+    $('.js-more-info').on('click', function() {
+      id = $(this).data('id');
+      
+      $.get('/product/' + id + '/description', function(data) {
+        $('#desc-' + id).text(data);
+      });
+      $.get('/product/' + id + '/inventory', function(data) {
+        (data == 'true') ? ($('#desc-' + id).after('<p>Available</p>')) : ($('#desc-' + id).after('<p>Sold Out</p>'));
+      });
+    });
+
+  })
+
+</script>
