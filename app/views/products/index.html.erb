@@ -1,1 +1,7 @@
+<h3>Our Product Selection</h3>
+<ul>
+<% @products.each do |product| %>
+<li><strong><%= product.name %>:</strong> <%= product.description %></li><br>
+<% end %>
 
+</ul>
