@@ -1,1 +1,23 @@
+<%= link_to "Create New Product", new_product_path %>
 
+<% @products.each do |product| %>
+  <%= render "product", product: product %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".js-more").one('click', function() {
+      var id = $(this).data('id');
+
+      $.get("/products/" + id + "/description", function(data) {
+        $("#description-" + id).text(data);
+      });
+
+      $.get("/products/" + id + "/inventory", function(data) {
+        data = data.replace("false", "Sold Out");
+        data = data.replace("true", "Available");
+        $("#name-inventory-" + id).append(" - ", data);
+      });
+    });
+  });
+</script>
