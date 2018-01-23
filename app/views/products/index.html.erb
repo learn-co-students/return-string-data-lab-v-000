@@ -12,9 +12,9 @@ $(function () {
 
     $.get("/products/" + id + "/inventory", function(data) {
       if (data === 'true') {
-        $("#body-" + id).append("<div>" + "Inventory: Available" + "</div>");
+        $("#body-" + id).append("<div> Inventory: Available </div>");
       } else {
-        $("#body-" + id).append("<div>" + " Inventory: Sold Out" + "/div");
+        $("#body-" + id).append("<div> Inventory: Sold Out </div>");
       };
     });
   });
