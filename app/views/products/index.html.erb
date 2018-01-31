@@ -1,1 +1,57 @@
+<!-- <% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
 
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".more-info").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(inventory) {
+      let status = "Available"
+      if (inventory != "true") {
+        status = "Sold Out"
+      }
+      $.get("/products/" + id + "/description", function(data) {
+
+  console.log($('#product-'+id))
+  console.log(data)
+  console.log(status)
+     let pageText = "<p>" + data + "</p><p>" + status + "</p>"
+
+     console.log(pageText)
+
+      $("#product-"+id).html(pageText);
+    });
+
+    });
+  });
+});
+</script> -->
+
+
+<h1>Products</h1>
+<% @products.each do |product| %>
+  <h3><%= product.name %></h3>
+  <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+  <button class="more-info" data-id="<%= product.id %>">More Info</button>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
