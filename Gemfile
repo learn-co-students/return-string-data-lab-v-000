@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'phantomjs', :require => 'phantomjs/poltergeist'
+
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
