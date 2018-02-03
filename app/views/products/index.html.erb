@@ -13,11 +13,11 @@
       var id = $(this).data("id");
       $.get("/products/" + id + "/description", function(description) {
         $.get("/products/" + id + "/inventory", function(inventory) {
-          var productStock = "Available";
+          var availability = "Available";
           if(inventory === "false"){
-            productStock = "Sold Out";
+            availability = "Sold Out";
           }
-          $("#description-" + id).html("<p>" + description + "</p><p>" + productStock + "</p>");
+          $("#description-" + id).html("<p>" + description + "</p><p>" + availability + "</p>");
         });
       });
     });
