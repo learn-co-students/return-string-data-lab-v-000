@@ -1,1 +1,34 @@
+<!--Create an index page for all products that displays name and a truncated description, but not inventory.-->
+
+<% @products.each do |product| %>
+
+  <h2> Product: <%= product.name %><span><button class="js-more" data-id="<%= product.id %>">More Info</button></span></h2>
+  <h3>Inventory: <%= product.inventory %></h3>
+  <div id="product-<%= product.id %>"> <%= truncate product.description %></div>
+  <div id="inventory-<%= product.id %>"> <%= product.inventory %></div>
+
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      $("#product-" + id).text(data);
+    });
+    
+    $.get("/products/" + id + "/inventory", function(data) {
+      if(data === "true") {
+        $("#inventory-" + id).text("Available");
+      } else {
+        $("#inventory-" + id).text("Sold Out");
+      }
+      
+    });
+    
+  });
+});
+</script>
+
 
