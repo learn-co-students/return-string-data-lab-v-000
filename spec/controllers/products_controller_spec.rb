@@ -20,9 +20,9 @@ RSpec.describe ProductsController, type: :controller do
     it 'returns true or false appropriately' do
       p1 = Product.create(@product_attributes)
       p2 = Product.create(name: "No Inventory", inventory: 0)
-      get :inventory, id: p1.id
+      get :available, id: p1.id
       expect(response.body).to eq "true"
-      get :inventory, id: p2.id
+      get :available, id: p2.id
       expect(response.body).to eq "false"
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe ProductsController, type: :controller do
   describe "GET description" do
     it 'returns the description as a plain string' do
       product = Product.create(@product_attributes)
-      get :description, id: product.id
+      get :body, id: product.id
       expect(response.body).to eq product.description
     end
   end
