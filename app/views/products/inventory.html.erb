@@ -1,0 +1,7 @@
+<h1><%= @product.name %> </h1>
+
+<% if @product.available? %>
+  <p> true </p>
+<% else %>
+  <p> false </p>
+<% end %>
