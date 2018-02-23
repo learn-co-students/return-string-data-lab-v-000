@@ -1,1 +1,34 @@
+<h1>Products Index</h1>
 
+<div>
+  <% @products.each do |product| %>
+    <h2><%= product.name %></h2>
+    
+    <div id="description-<%= product.id %>">
+      <p><%= truncate product.description %></p>
+    </div>
+    
+    <button class="js-more" data-id="<%= product.id %>">More Info</button>
+  <% end %>
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+      $('.js-more').on('click', function() {
+        // declaring the id with LET caused a parse error
+        // Don't declare let variables outside of a function that uses it
+        // const worked, and also var but NOT let
+        const id = $(this).data('id');
+        
+        $.get('/products/' + id + '/description', function(data) {
+          $('#description-' + id).text(data)
+        })
+        
+        $.get('/products/' + id + '/inventory', function(data) {
+          data === 'true' ? result = 'Available' : result = 'Sold Out'
+          $('#description-' + id).append('Inventory: ' + result)
+        })
+      })
+    })
+  </script>
+  
+</div>
