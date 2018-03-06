@@ -14,8 +14,7 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    inv = !!product.inventory ? "true" : "false"
-    render plain: inv
+    render plain: product.inventory.nil? ? false : product.inventory > 0
   end
 
   def description

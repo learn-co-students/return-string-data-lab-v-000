@@ -18,12 +18,12 @@
 
       var id = $(this).data("id");
 
-      $.get(`/products/${id}/description`, function (descResponse) {
-        $.get(`/products/${id}/inventory`, function (invResponse) {
+      $.get("/products/"+id+"/description", function (descResponse) {
+        $.get("/products/"+id+"/inventory", function (invResponse) {
           var inv = invResponse === "true" ? "Available" : "Sold Out";
 
-          $(`#desc-${id}`).html(descResponse);
-          $(`#inv-${id}`).html(inv);
+          $("#desc-" + id).html(descResponse);
+          $("#inv-" + id).html(inv);
         });
       });
 
