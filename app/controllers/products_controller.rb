@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  def index
+    @products = Product.all
+  end
+
   def create
     @product = Product.new(params.require(:product).permit(:name, :price, :inventory, :description))
     @product.save
@@ -8,7 +12,7 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    render plain: product.inventory > 0 ? true : false
+    render plain: product.inventory.to_i > 0 ? true : false
   end
 
   def description

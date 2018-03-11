@@ -1,1 +1,12 @@
-
+<% @products.each do |product| %>
+  <p>
+    <%= product.name %>
+      <%= button_tag "More Info", class: "more_info", data: 
+        {
+          product_id: product.id,
+          product_inventory_url: inventory_product_path(product),
+          product_description_url: description_product_path(product)
+        } 
+      %>
+  </p>
+  <% end %>
