@@ -18,8 +18,24 @@ class ProductsController < ApplicationController
     def show
        @product = Product.find(params[:id]) 
     
+    end
+    
+    def description
+        product = Product.find(params[:id])
+        render plain: product.description
+    end
+    
+    def inventory
+ 
+        @product = Product.find(params[:id]) 
+        # binding.pry
+        if @product.inventory != nil && @product.inventory != 0 
+            render plain: "true"
+        else 
+            render plain: "false"
+        end 
     end 
-
+    
     private
     # Use callbacks to share common setup or constraints between actions.
     #   def set_post
