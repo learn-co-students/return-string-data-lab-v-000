@@ -1,0 +1,7 @@
+<h3><%= product.id %>: <%= product.name %></h3>
+<% if product.price %>
+  <p><strong>$<%= sprintf('%.2f', product.price/10.0) %></strong></p>
+<% end %>
+<div id="body-<%= product.id %>"><%= truncate(product.description) %></div><br>
+
+<button class="js-more-info" data-id="<%= product.id %>">More Info</button>
