@@ -1,1 +1,9 @@
+<h1>Register a Product:</h1>
 
+<%= form_for @product do |f| %>
+  <p><%= f.label :name, "Name:" %><%= f.text_field :name %></p>
+  <p><%= f.label :price, "Price:" %><%= f.number_field :price %></p>
+  <p><%= f.label :description, "Description:" %><%= f.text_field :description %></p>
+  <p><%= f.label :inventory, "Inventory:" %><%= f.number_field :inventory %></p>
+  <%= f.submit %>
+<% end %>
