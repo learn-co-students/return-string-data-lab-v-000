@@ -3,20 +3,20 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
-<% end %>
+<% end %> 
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-more").on("click", function() {
-    var id = $(this).data("id");
+    const id = $(this).data("id")
     $.get("/products/" + id + "/description", function(description) {
       $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
+        let availability = "Available"
+        if(inventory === "false" ){
+          availability = "Sold Out"
         }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#product-" + id).html(descriptionText);
+        let productString = "<p>" + description + "</p><p> " + availability + "</p>";
+        $("#product-" + id).html(productString);
       });
     });
   });
