@@ -1,1 +1,10 @@
+<h1>Products</h1>
+  <% @products.each do |product| %>
+    <h3><%= product.name %></h3>
+    <div id="product_<%=product.id%>">
+      <%= truncate product.description %> 
+    </div>
+    <button class="button"  data-id="<%=product.id %>" value="More Info" name="More Info">More Info</button>
+    <br>
+  <% end %> 
 
