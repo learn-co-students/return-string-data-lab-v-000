@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @products = Product.distinct
   end
 
   def show

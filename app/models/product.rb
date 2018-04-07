@@ -15,12 +15,10 @@ class Product < ActiveRecord::Base
   # end
   
   def inventory?
-    if self.inventory === true
-      "true"
-    elsif self.inventory === false
-      "false"
+    if !!self.inventory == true
+      return "true"
     else
-      "false"
+      return "false"
     end      
   end 
 end
