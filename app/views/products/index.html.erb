@@ -3,22 +3,22 @@
   <h3><%= product.name %></h3>
   <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
-<% end %> 
+<% end %>
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on("click", function() {
-    const id = $(this).data("id")
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        let availability = "Available"
-        if(inventory === "false" ){
-          availability = "Sold Out"
-        }
-        let productString = "<p>" + description + "</p><p> " + availability + "</p>";
-        $("#product-" + id).html(productString);
+  $(function() {
+    $(".js-more").on("click", function() {
+      var id = $(this).data("id")
+      $.get("/products/" + id + "/description", function(description) {
+        $.get("/products/" + id + "/inventory", function(inventory) {
+          var availability = "Available"
+          if(inventory === "false" ){
+            availability = "Sold Out"
+          }
+          var productString = "<p>" + description + "</p><p> " + availability + "</p>";
+          $("#product-" + id).html(productString);
+        });
       });
     });
   });
-});
 </script>
