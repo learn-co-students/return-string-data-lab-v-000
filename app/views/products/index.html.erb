@@ -1,1 +1,35 @@
+<!-- all products that displays name and a truncated description, but not inventory -->
+<% @products.each do |product| %>
+  <p><strong> <%= product.name %> </strong></p>
+  <p> <%= truncate(product.description) %> </p>
+  <button type="button" class="js-more" data-id= "<%= product.id %>" name="button">More Info</button>
+  <br></br>
+  <div id="info-<%= product.id %>">
 
+  </div>
+<% end %>
+
+<!-- Add a "More Info" button to each product that, when clicked, fetches the description and the inventory and displays the result.
+    If there is inventory available, display "Available" and if there isn't, display "Sold Out". -->
+
+<script type="text/javascript">
+  $(function(){
+    $(".js-more").on("click", function () {
+      var id = $(this).data("id");
+      // adding the description
+      $.get('/product/' + id + '/description', function (data) {
+        $('#info-' + id).text(data)
+      })
+
+      $.get('/product/' + id + '/inventory', function (data) {
+
+        if (data === "true") {
+          $('#info-' + id).append("<p> Available </p>");
+        }
+        else {
+          $('#info-' + id).append("<p> Sold Out </p>");
+        }
+      })
+    })
+  })
+</script>
