@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:description, :inventory]
+  before_action :set_product, only: [:show, :description, :inventory]
 
   def new
     @product = Product.new
@@ -8,6 +8,13 @@ class ProductsController < ApplicationController
   def create
     Product.create(product_params)
     redirect_to products_path
+  end
+
+  def show
+  end
+
+  def index
+    @products = Product.all
   end
 
   def description
