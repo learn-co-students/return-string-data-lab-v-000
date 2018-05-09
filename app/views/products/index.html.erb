@@ -1,1 +1,23 @@
+<ul>
+  <% @products.each do |product| %>
+    <%= render '/products/product', product: product %>
+  <% end %>
+</ul>
 
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.js-more').on('click', function() {
+      const id = $(this).data("id");
+      $.get('/products/' + id + '/description', function(data) {
+        $('#desc-'+id).text(data);
+      })
+      $.get('/products/' + id + '/inventory', function(data) {
+        if (data == 'true') {
+          $('#inv-'+id).text("Available");
+        } else {
+          $('#inv-'+id).text("Sold Out");
+        }
+      })
+    })
+  })
+</script>
