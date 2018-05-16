@@ -18,5 +18,6 @@ RSpec.describe "Product Index", type: :feature do
     visit products_path
     click_button "More Info"
     expect(page).to have_content "Available"
+
   end
 end
