@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'poltergeist', '~> 1.14.0'
+  gem 'rails-controller-testing'
 end
 
 group :development do
