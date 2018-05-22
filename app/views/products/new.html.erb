@@ -1,7 +1,8 @@
 Create a New Product!
 
-<% form_for @product do |f| %>
-<%= f.text_field :name %>
-<%= f.text_field :description %>
+<%= form_for @product do |f| %>
+Name: <%= f.text_field :name %><br>
+Description: <%= f.text_field :description %><br>
+Price: <%= f.text_field :price %><br>
 <%= f.submit "Create" %>
 <% end %>
