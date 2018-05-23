@@ -5,48 +5,35 @@
 <% end %>
 <script type="text/javascript">
   $(function() {
-    $(".js-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-      $.get("/products/" + id + "/inventory", function(inventory) {
-        var inventoryText = "<strong>Available</strong>";
-        if(inventory === "false"){
-          inventoryText = "<strong>Sold Out</strong>";
-        }
-        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
-        $("#prod-" + id + "-description").html(descriptionText);
-      });
+    $(".js-more").on("click", function(){
+      const button = $(this);
+      const id = button.data("id");
+      const state = button.data("toggle-state");
+      if (state === "closed") {
+        $.get(`/products/${id}/description`, function (data){
+          $(`#prod-${id}-description`).html(data);
+        });
+        $.get(`/products/${id}/inventory`, function (data){
+          $(`#prod-${id}-inventory`).css("display","block");
+          if (data === "true") {
+            $(`#prod-${id}-inventory`).html("Available");
+          }
+          else {
+            $(`#prod-${id}-inventory`).html("Sold Out");
+          }
+        });
+        button.data("toggle-state", "open");
+        button.html("Less Info");
+      }
+      else {
+        $.get(`/products/${id}/truncated-description`, function(truncatedDescription) {
+          $(`#prod-${id}-description`).html(truncatedDescription);
+        });
+        $(`#prod-${id}-inventory`).css("display","none");
+        $(`#prod-${id}-inventory`).html("");
+        button.data("toggle-state", "closed");
+        button.html("More Info");
+      }
     });
-  });
-    // $(".js-more").on("click", function(){
-    //   const button = $(this);
-    //   const id = button.data("id");
-    //   const state = button.data("toggle-state");
-    //   if (state === "closed") {
-    //     $.get(`/products/${id}/description`, function (data){
-    //       $(`#prod-${id}-description`).html(data);
-    //     });
-    //     $.get(`/products/${id}/inventory`, function (data){
-    //       $(`#prod-${id}-inventory`).css("display","block");
-    //       if (data === "true") {
-    //         $(`#prod-${id}-inventory`).html("Available");
-    //       }
-    //       else {
-    //         $(`#prod-${id}-inventory`).html("Sold Out");
-    //       }
-    //     });
-    //     button.data("toggle-state", "open");
-    //     button.html("Less Info");
-    //   }
-    //   else {
-    //     $.get(`/products/${id}/truncated-description`, function(truncatedDescription) {
-    //       $(`#prod-${id}-description`).html(truncatedDescription);
-    //     });
-    //     $(`#prod-${id}-inventory`).css("display","none");
-    //     $(`#prod-${id}-inventory`).html("");
-    //     button.data("toggle-state", "closed");
-    //     button.html("More Info");
-    //   }
-    // });
   });
 </script>
