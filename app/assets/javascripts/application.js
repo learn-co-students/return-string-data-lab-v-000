@@ -13,4 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require_tree
+$(function() {
+  $('.js-more').on('click', function() {
+    let id = $(this).data('id');
+    $.get(`/products/${id}/description`, function(data) {
+      $(`#body-${id}`).text(data);
+    })
+  })
+})

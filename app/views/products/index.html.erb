@@ -1,1 +1,9 @@
 
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %> <p id="body-<%= product.id %>"><%= truncate product.description %></p>
+    </li>
+    <button class='js-more' data-id='<%= product.id %>'>More Info</button>
+  <% end %>
+</ul>
