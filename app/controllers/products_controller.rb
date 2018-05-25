@@ -1,12 +1,9 @@
 class ProductsController < ApplicationController
-	before_action :set_product, only: [:show, :update, :description, :inventory]
+	before_action :set_product, only: [:body, :description, :inventory]
 
 	def index
 	   	@products = Product.all
 	end
-
-	def show
-  	end
 
   	def new
     	@product = Product.new
@@ -30,13 +27,11 @@ class ProductsController < ApplicationController
   	end
 
   	def body
-	    product = Product.find(params[:id])
-
 	    @inventory_status = "Sold Out"
-	    if product.inventory != nil && product.inventory > 0
+	    if @product.inventory != nil && @product.inventory > 0
 	    	@inventory_status = "Available"
 	    end
-	    render plain: "#{@inventory_status} : #{product.description}"
+	    render plain: "#{@inventory_status} : #{@product.description}"
 	end
 
   	private
@@ -50,5 +45,5 @@ class ProductsController < ApplicationController
 	  def product_params
 	    params.require(:product).permit(:name, :price, :description, :inventory)
 	  end
-
+	  
 end
