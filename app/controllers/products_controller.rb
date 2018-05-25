@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-	before_action :set_product, only: [:description, :inventory]
+	before_action :set_product, only: [:show, :update, :description, :inventory]
 
 	def index
 	   	@products = Product.all
@@ -28,6 +28,16 @@ class ProductsController < ApplicationController
   		
   		render plain: @inventory
   	end
+
+  	def body
+	    product = Product.find(params[:id])
+
+	    @inventory_status = "Sold Out"
+	    if product.inventory != nil && product.inventory > 0
+	    	@inventory_status = "Available"
+	    end
+	    render plain: "#{@inventory_status} : #{product.description}"
+	end
 
   	private
 
