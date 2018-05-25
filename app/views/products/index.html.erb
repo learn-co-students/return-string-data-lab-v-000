@@ -1,1 +1,17 @@
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+	$(function () {
+	  $(".js-more").on('click', function(e) {
+	    // get the id from the data attribute
+	    var id = $(this).data("id");
+	    $.get("/products/" + id + "/body", function(data) {
+	      $("#body-" + id).text(data);
+	    })
+	    e.preventDefault()
+	  })
+
+	})
+</script>
