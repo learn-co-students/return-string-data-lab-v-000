@@ -1,1 +1,20 @@
-
+<dl>
+  <% @products.each do |product| %>
+    <dt>
+      <strong>
+        <%= product.name %> <small id="avail-<%= product.id %>"></small>
+      </strong>
+    </dt>
+    <dd>
+      <span id="desc-<%= product.id %>">
+        <%= truncate product.description %>
+      </span>
+      <%= button_tag "More Info",
+                      {id:"btn-#{product.id}",
+                       display:'inline',
+                       class:'btn moreInfoBtn',
+                       data:{
+                         id:product.id}} %>
+    </dd><br>
+  <% end %>
+</dl>

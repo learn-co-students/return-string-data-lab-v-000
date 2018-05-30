@@ -1,0 +1,29 @@
+$(function() {
+  $(".moreInfoBtn").click(function() {
+    getDesc(this);
+    checkInv(this);
+  });
+})
+
+function getDesc(el) {
+  const id = el.dataset.id
+  $.get("/products/"+id+"/description", function(data) {
+    $("#desc-"+id).text(data);
+    $("#btn-"+id).remove();
+  });
+}
+
+function checkInv(el) {
+  const id = el.dataset.id
+  const span = $("#avail-"+id);
+
+  $.get("/products/"+id+"/inventory", function(data) {
+    if (data === "true") {
+      span.text(" Available");
+      span.addClass("available");
+    } else if (data === "false") {
+      span.text(" Sold Out");
+      span.addClass("soldOut");
+    };
+  })
+}
