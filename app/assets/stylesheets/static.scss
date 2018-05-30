@@ -1,3 +1,38 @@
 // Place all the styles related to the Static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.form {
+  width:600px;
+  padding:5px;
+}
+form {
+  input[type=text], input[type=number], textarea {
+    width:100%;
+    box-sizing:border-box;
+    border-radius:3px;
+    padding:5px;
+    margin:5px;
+  }
+  textarea {
+    resize:none;
+    // border-radius: 4px;
+  }
+}
+
+.btn {
+  padding:4px;
+  margin:2px;
+  border:none;
+  &:hover {
+    background-color:darken(#DCDCDC, 10%);
+  }
+}
+
+.available {
+  color:green;
+}
+
+.soldOut {
+  color:red;
+}
