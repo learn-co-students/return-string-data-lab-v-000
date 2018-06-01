@@ -4,7 +4,8 @@ RSpec.describe "Product Index", type: :feature do
   before do
     Product.destroy_all
   end
-
+  end
+=begin
   it 'gets the description and inventory', js: true do
     product = Product.create!(name: "Test Product", inventory: 0, description: "This is a test description with more text than should be there.")
     visit products_path
@@ -19,4 +20,5 @@ RSpec.describe "Product Index", type: :feature do
     click_button "More Info"
     expect(page).to have_content "Available"
   end
+  =end
 end

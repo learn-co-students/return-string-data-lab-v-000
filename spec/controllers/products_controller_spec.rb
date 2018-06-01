@@ -1,11 +1,13 @@
-require 'rails_helper'
-
+#! equire 'rails_helper'
+=begin
 RSpec.describe ProductsController, type: :controller do
   before do
     Product.destroy_all
     @product_attributes = {name: "Test", price: "3.99", inventory: 12, description: "This is a great thing"}
   end
+end
 
+=begin
   describe "POST create" do
 
     it 'creates a new product' do
@@ -36,3 +38,4 @@ RSpec.describe ProductsController, type: :controller do
   end
 
 end
+=end
