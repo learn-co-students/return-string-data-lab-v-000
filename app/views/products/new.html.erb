@@ -1,1 +1,10 @@
-
+<h1>Create A New Product:</h1>
+<%= form_for(@product) do |f| %>
+  <%= label_tag :name %> <br>
+  <%= text_field_tag :name %> <br>
+  <%= label_tag :description %> <br>
+  <%= text_area_tag :description %> <br>
+  <%= label_tag :price %> <br>
+  <%= text_field_tag :price %> <br>
+  <%= submit_tag %>
+<% end %>
