@@ -1,12 +1,19 @@
 <%= render @products %>
 
 <script type="text/javascript" charset="utf-8">
-$( function() {
-  $(".js-more").on("click", function() {
-    let id = $(this).data("id")
-    $.get("/products/" + id + "/description", function(data) {
-      $("#body-" + id).text(data)
+  $( function() {
+    $(".js-more").on("click", function() {
+      let id = $(this).data("id")
+      $.get("/products/" + id + "/description", function(data) {
+        $("#body-" + id + "-description").text(data)
+      })
+      $.get("/products/" + id + "/inventory", function(data) {
+        if (data === "true") {
+          $("#body-" + id + "-inventory").text("Available")
+        } else {
+          $("#body-" + id + "-inventory").text("Sold Out")
+        }
+      })
     })
   })
-})
 </script>
