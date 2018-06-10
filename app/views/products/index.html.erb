@@ -1,1 +1,20 @@
+<% @products.each do |product| %>
+<%= render :partial =>  'product', :locals => {product: product} %>
+<% end %>
 
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(response) {
+      response === "true" ? $("#inventory-" + id).html("Available") : $("#inventory-" + id).html("Sold Out")
+      });
+    $.get("/products/" + id + "/description", function(response) {
+      $("#description-" + id).html(response)
+      // We simply use the # selector to find the right body-id, and call .text(data) to replace the text of the div with what we got back from our API call.
+    });
+  });
+});
+</script>
