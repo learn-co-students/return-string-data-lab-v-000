@@ -1,1 +1,9 @@
-
+<%= form_for( @product) do |f| %>
+    <%= label_tag (:name, "Name") %> <br>
+    <%= text_field_tag (:name) %> <br>
+    <%= label_tag (:description, "description") %> <br>
+    <%= text_area_tag (:description, "Enter product description...") %> <br>
+    <%= label_tag (:inventory, "How many are in stock?") %> <br>
+    <%= range_field (:inventory, in: 1..20) %> <br>
+    <%= submit_tag ("Enter to Stock!") %>
+<% end %>
