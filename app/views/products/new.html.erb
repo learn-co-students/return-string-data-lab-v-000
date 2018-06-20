@@ -1,1 +1,36 @@
+<h1>New Product</h1>
 
+<%= form_for(@product) do |f| %>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+            <h2>There were some errors:</h2>
+            <ul>
+                <% @product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <br>
+
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+
+    <br>
+
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+
+    <br>
+
+    <%= f.label :inventory %>
+    <%= f.text_field :inventory %>
+
+    <br>
+
+    <%= f.submit %>
+<% end %>
