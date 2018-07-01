@@ -2,7 +2,7 @@
 <% @products.each do |product| %>
   <ul>
     <li><%= product.name %></li>
-    <ul><div id="desc-<%=product.id%>"><li><%= truncate product.description %></li></p></ul>
+    <div id="desc-<%=product.id%>"><ul><li><%= truncate product.description %></li></ul></div>
     <button class="js-more" data-id="<%= product.id %>">More Info</button>
   </ul>
 <% end %>
@@ -19,7 +19,7 @@
           if(inventory==="true"){
             avail_text = "Available"
           }
-          $("#desc-"+id).html("<li>"+desc_text+"</li><li>"+avail_text+"</li>")
+          $("#desc-"+id).html("<ul><li>"+desc_text+"</li><li>"+avail_text+"</li></ul>")
         })
       })
     })
