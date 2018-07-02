@@ -1,1 +1,5 @@
-
+<%= form_for @product do |p|%>
+  <%= p.text_field :name %>
+  <%= p.number_field :price %>
+  <%= p.submit %>
+<% end %>
