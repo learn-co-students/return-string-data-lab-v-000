@@ -1,6 +1,6 @@
 <% @products.each do |product|%>
   <%= product.name%>
-  <div id="desc-<%=product.id%>"><%= truncate(product.description)%></div>
+  <div id="desc-<%=product.id%>"><%= truncate(product.description)%><%=product.inventory%></div>
   <button class="js-more" data-id="<%=product.id%>">More Info</button><hr>
 <%end%>
 
@@ -9,9 +9,14 @@ $(function() {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
-
-      // alert(data)
-      $("#desc-" + id).text(data);
+      $.get("/products/" + id + "/inventory", function(data2){
+        if(data2 === "true"){
+          data2 = "Available"
+        }else {
+          data2 = "Sold Out"
+        }
+        $("#desc-" + id).text(data + data2);
+      })
     });
   });
 });
