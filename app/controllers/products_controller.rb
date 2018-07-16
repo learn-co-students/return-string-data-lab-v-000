@@ -8,6 +8,16 @@ class ProductsController < ApplicationController
     render plain: product.description
   end
 
+  def inventory
+    product = Product.find(params[:id])
+    if product.inventory > 0
+      answer = "true"
+    else
+      anwser = "false"
+    end
+    answer
+  end
+
   def new
     @product = Product.new
   end
