@@ -1,7 +1,10 @@
 <ul>
 <%@products.each do |product|%>
-  <li><%=product.name%>: <%= truncate product.description %></li>
-  <button class="js-more" data-id="<%= @product.id %>">More...</button>
+  <li><%=product.name%>:
+    <div id="description-<%= product.id %>"> <%= truncate product.description %> </div>
+  </li>
+
+  <button class="js-more" data-id="<%= product.id %>">More...</button>
 <%end%>
 </ul>
 
@@ -11,11 +14,14 @@ $(function () {
  $(".js-more").on('click', function() {
    // get the id from the data attribute
    var id = $(this).data("id");
-   $.get("/products/" + id + "/description", function(data) {
-     alert(data);
-   });
+   //$.get("/products/" + id + "/description", function(data) {
+     //$("#description-" + id).text(data);
+   //});
    $.get("/products/" + id + "/inventory", function(data) {
-     alert(data);
+     debugger
+     $("#description-" + id).text(data);
    });
+
  });
 });
+</script>
