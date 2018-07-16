@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     if product.inventory >= 1
       answer = "true"
     else
-      anwser = "false"
+      answer = "false"
     end
     render plain: answer
   end
