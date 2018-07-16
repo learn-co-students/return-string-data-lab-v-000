@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def description
     product = Product.find(params[:id])
     render plain: product.description
+    byebug
   end
 
   def inventory
@@ -15,6 +16,7 @@ class ProductsController < ApplicationController
     else
       anwser = "false"
     end
+    byebug
     render plain: answer
   end
 
