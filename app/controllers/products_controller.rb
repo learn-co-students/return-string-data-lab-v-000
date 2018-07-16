@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    if product.inventory > 0
+    if product.inventory >= 1
       answer = "true"
     else
       anwser = "false"
