@@ -1,1 +1,15 @@
 
+<% @products.each do |p| %>
+  <p>NAME: <%= p.name %></p>
+  <p id='body=<%= p.id %>'>DESCRIPTION : <%= truncate(p.description) %></p>
+  <p>AMOUNT: <%= p.inventory == 0 ? "SOLD OUT" : "AVAILABLE" %></p>
+  <p><button onclick="more(<%= p.id %>)"></button>MORE INFO </p>
+  <% end %>
+
+  <script type="text/javascript">
+    function more(id) {
+      $.get('products/' + id + '/description', function(data) {
+        $('#body-' + id).text('Description: ' + data)
+      })
+    }
+  </script>
