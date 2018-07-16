@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     else
       anwser = "false"
     end
-    answer
+    render plain: answer
   end
 
   def new
