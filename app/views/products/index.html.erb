@@ -17,10 +17,19 @@ $(function () {
    //$.get("/products/" + id + "/description", function(data) {
      //$("#description-" + id).text(data);
    //});
-   $.get("/products/" + id + "/inventory", function(data) {
-     debugger
-     $("#description-" + id).text(data);
+
+   $.get("/products/" + id + "/description", function(description) {
+     $.get("/products/" + id + "/inventory", function(inventory) {
+       var availability = ""
+       if (inventory === "false") {
+         availability = "Sold Out"
+       } else {
+         availability = "Available"
+       }
+       $("#description-" + id).text(description + ": " + availability);
+     });
    });
+
 
  });
 });
