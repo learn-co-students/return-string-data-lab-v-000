@@ -3,13 +3,24 @@
   <p>NAME: <%= p.name %></p>
   <p id='body=<%= p.id %>'>DESCRIPTION : <%= truncate p.description %></p>
   <p>AMOUNT: <%= p.inventory == 0 ? "SOLD OUT" : "AVAILABLE" %></p>
-  <p><button onclick="more(<%= p.id %>)">More Info</button> </p>
+  <p><button class='js-more' data-id='<%= p.id %>'>More Info</button> </p>
   <% end %>
 
   <script type="text/javascript">
-    function more(id) {
-      $.get('products/' + id + '/description', function(data) {
-        $('#body-' + id).text('Description: ' + data)
+    function() {
+      $('.js-more').on('click', function() {
+        let id = $(this).data('id')
+        $.get('/products/' + id + '/description',
+      function(data) {
+        $('#body-' + id).html('<p>' + data + '<p>')
+        $.get('/products/' + id + '/inventory',
+      function(data) {
+        if (data === 'true') {
+          $('#body-' + id).append("<p>Available</p>")
+        } else {
+          $('#body-' + id).append("<p>Sold Out</p>")
+        }
       })
-    }
+    })
+  })
   </script>

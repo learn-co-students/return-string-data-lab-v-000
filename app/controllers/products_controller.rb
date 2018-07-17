@@ -5,19 +5,22 @@ class ProductsController < ApplicationController
   end
 
   def inventory
-    @product = Product.find(params[:id])
-    render plain: @product.inventory.to_i > 0 ? true : false
+    product = Product.find(params[:id])
+    if product.inventory > 0
+      render plain: true
+    else
+      render plain: false
+    end
   end
 
   def description
-    @product = Product.find(params[:id])
-    binding.pry
-    render plain: @product.description
+    product = Product.find(params[:id])
+    render plain: product.description
   end
 
   def create
-    @product = Product.create(product_params)
-    if @product.valid?
+    product = Product.create(product_params)
+    if product.valid?
       redirect_to products_path
     else
       render :new
