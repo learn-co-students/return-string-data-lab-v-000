@@ -20,12 +20,10 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    if !!product.inventory
-      p = product.inventory > 0 ? true : false 
-    else 
-      p = false
-    end
-    render plain: p
+
+    pi = product.inventory
+    render plain: !!pi && pi > 0 ? true : false
+
   end
 
   private 
