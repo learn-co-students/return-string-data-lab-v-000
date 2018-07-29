@@ -4,32 +4,44 @@
 
 <!-- NOTE : Putting this code here so that it is only run once compared to the partial that will be run multiple times -->
 <script type="text/javascript" charset="utf-8">
+
 $(function () {
   $(".js-more").on('click', function() {
     const id = $(this).data("id");
-    // console.log("Clicked for info for product : ", id);
-    let full_info = "";
-    let inventory_availability;
     
     // NOTE : Get full description
     $.get("/products/" + id + "/description", function(data) {
-        // console.log("Description = ", data);
-        full_info += data;
-      // NOTE : Return availability
-      $.get("/products/" + id + "/inventory", function(availability) {
-        // console.log("Availability = ", typeof availability);
-        if (availability === 'true') {
-          // console.log("True");
-          inventory_availability = " | Inventory = Available";
-        } else {
-          // console.log("False");
-          inventory_availability = " | Inventory = Sold Out";
-        }
-        // console.log("Availability = ", inventory_availability);
-        full_info += inventory_availability;
-        $("#body-" + id).text(full_info);
-      });
+      $("#body-" + id + "-description").text(data);
     });
+    
+    // NOTE : Return availability
+    $.get("/products/" + id + "/inventory", function(availability) {
+      let inventory_availability;
+      if (availability === 'true') {
+        inventory_availability = "Inventory = Available";
+      } else {
+        inventory_availability = "Inventory = Sold Out";
+      }
+      $("#body-" + id + "-availability").text(inventory_availability);
+    });
+
+
+    // $.get("/products/" + id + "/description", function(data) {
+    //   full_info += data;
+    //   // NOTE : Return availability
+    //   $.get("/products/" + id + "/inventory", function(availability) {
+    //     if (availability === 'true') {
+    //       inventory_availability = " | Inventory = Available";
+    //     } else {
+    //       inventory_availability = " | Inventory = Sold Out";
+    //     }
+    //     full_info += inventory_availability;
+    //     $("#body-" + id + "-description").text(full_info);
+    //   });
+    // });
   });
+
 });
+
+
 </script>

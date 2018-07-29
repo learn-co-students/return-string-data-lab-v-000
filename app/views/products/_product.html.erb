@@ -1,7 +1,8 @@
 <h1><%= product.id %>: <%= product.name %></h2>
 
 <!-- NOTE : Adding id so can identify the div to be updated through the button -->
-<div id="body-<%= product.id %>"><%= truncate product.description %></div>
+<div id="body-<%= product.id %>-description"><%= truncate product.description %></div>
+<div id="body-<%= product.id %>-availability"></div>
 
 <!-- NOTE : Using "js-" to denote JS Selector and sending post-id because need that info -->
-<button class="js-more" data-id="<%= product.id %>" id="More Info" name="More Info">More Info</button>
+<button class="js-more" data-id="<%= product.id %>">More Info</button>

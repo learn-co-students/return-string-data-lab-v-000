@@ -26,9 +26,9 @@ class ProductsController < ApplicationController
     def inventory
         product = Product.find(params[:id])
         # puts "product.inventory = #{product.inventory}"
-        availability = false
+        availability = "false"
         if product.inventory > 0
-            availability = true
+            availability = "true"
         end
         render plain: availability
     end
