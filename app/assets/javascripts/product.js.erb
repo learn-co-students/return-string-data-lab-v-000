@@ -1,0 +1,15 @@
+$(function(){
+  $(".js-more").on("click", function(){
+    let id = $(this).data('id');
+    $.get(`description/${id}`, function(data){
+      $(`#product-${id}`).text(data);
+    });
+    $.get(`inventory/${id}`, function(data){
+      if (data === 'true') {
+        $(`#product-${id}`).append(" - Available");
+      } else {
+        $(`#product-${id}`).append(" - Sold Out");
+      };
+    });
+  });
+});
