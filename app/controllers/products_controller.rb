@@ -5,22 +5,18 @@ class ProductsController < ApplicationController
   end
 
   def inventory
-    product = Product.find(params[:id])
-    if product.inventory > 0
-      render plain: true
-    else
-      render plain: false
-    end
+    set_product
+    render plain: @product.inventory > 0
   end
 
   def description
-    product = Product.find(params[:id])
-    render plain: product.description
+    set_product
+    render plain: @product.description
   end
 
   def create
-    product = Product.create(product_params)
-    if product.valid?
+    @product = Product.create(product_params)
+    if @product.save
       redirect_to products_path
     else
       render :new
@@ -32,6 +28,10 @@ class ProductsController < ApplicationController
   end
 
   private
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
   def product_params
     params.require(:product).permit(:name, :price, :inventory, :description)
   end

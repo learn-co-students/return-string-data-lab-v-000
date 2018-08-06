@@ -1,25 +1,27 @@
-
 <% @products.each do |product| %>
-
   <h1><%= product.name %></h1>
-  <div id="description-<%= product.id%>"> <%= truncate product.description%> </div>
-  <div id="inventory-<%= product.id%>"></div>
-  <button class="js-more" data-id="<%= product.id %>">More Info</button>
-<% end %>
+  <div id="body-<%= product.id %>"><%=truncate product.description %>
+
+    <button class="js-details" data-id="<%= product.id %>"> More Info...
+    </button>
+  </div>
+  <% end %>
 
 <script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".js-more").on("click", function() {
-      var $id = $(this).data("id");
-      $.get("/products/" + $id + "/description", function(data) {
-        $("#description-" + $id).text(data)
+  $(function(){
+    $(".js-details").on("click", function(){
+      const id = $(this).data("id")
+      $.get("/products/" + id + "/description",
+      function(data){
+      $("#body-" + id).text(data)
       })
-      $.get("/products/" + $id + "/inventory", function(data) {
-        if (data === "true") {
-          $("#inventory-" + $id).html("Available")
-        }
-        else {
-          $("#inventory-" + $id).html("Sold Out")
+    $.get("/products/" + id + "/inventory",
+      function(data){
+        debugger
+        if (data === 'true'){
+          $("#body-" + id).after("<p>Available</p>")
+        } else {
+          $("#body-" + id).after("<p>Sold Out</p>")
         }
       })
     })
