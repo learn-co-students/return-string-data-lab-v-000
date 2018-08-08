@@ -1,1 +1,30 @@
+<% @products.each do |product| %>
+  Name: <%= product.name %>
+  <br>
+  <div class="more_info_<%= product.id %>">
+  <%= truncate(product.description) %>
+  </div>
+   <button class="more_info_button" data-id="<%= product.id %>">More Info</button>
+  <br>
+  <br>
 
+<% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('.more_info_button').on('click', function() {
+      const productId = this.dataset.id
+      $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+        })
+      })
+    })
+  })
+  </script>
