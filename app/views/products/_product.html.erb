@@ -1,0 +1,8 @@
+<div class="product" id="product-<%=product.id%>">
+  <p><strong><%=product.name%></strong><br>
+  <div class="product-details" id="product-<%=product.id%>-details">
+    <%= truncate product.description %></p>
+    <button class="js-more" id="show-details-<%=product.id%>" data-pid="<%=product.id%>">More Info</button>
+  </div>
+
+</div>
