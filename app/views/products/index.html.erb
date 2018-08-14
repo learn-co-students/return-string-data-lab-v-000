@@ -1,1 +1,30 @@
 
+<h1>Products</h1>
+
+<%= form_for @product do |f| %>
+  <%= f.text_field :name %>
+  <%= f.label :name %><br>
+  <%= f.text_area :description %>
+  <%= f.label :description %><br>
+  <%= f.text_field :price %>
+  <%= f.label :price %><br>
+  <%= f.text_field :inventory %>
+  <%= f.label :inventory %><br>
+  <%= f.submit 'Add Product' %>
+<% end %>
+
+<% @products.each do |product| %>
+  <%= render partial: 'product', locals: {product: product}%>
+<% end %>
+
+<script type="text/javascript">
+    $(".js-more").on("click", function(){
+      var pid = $(this).data("pid")
+      $.get("/products/" + pid + "/description", function(data){
+        $("#product-" + pid + "-details").text(data)
+      })
+      $.get("/products/" + pid + "/stock", function(data){
+        $("#product-" + pid + "-details").append("<br>" + data)
+      })
+    })
+</script>
