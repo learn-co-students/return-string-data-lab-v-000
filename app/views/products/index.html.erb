@@ -1,1 +1,47 @@
+<ul>
+  <% @products.each do |p| %>
+<li><%= p.name %> - $<%= p.price %><br>
+  <%= truncate (p.description) %>
+  <button id="js-inventory" data-type='inventory' data-id="<%= p.id %>">Inventory</button>
+  <button class="js-more" data-description="<%= p.description %>"data-inventory="<%= p.inventory %>" data-id="<%= p.id %>">More Info</button>
+    <p id="inventory-<%= p.id %>"></p>
+    <p id="moreInfo-<%= p.id %>"></p>
+</li>
+  <% end %>
+</ul>
 
+
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $("#js-inventory").on('click',function() {
+      var id = this.dataset.id;
+      $.get('/products/' + id + "/inventory", function(data) {
+        $("#inventory-" + id).text(data);
+      })
+    })
+  })
+
+</script>
+
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on('click', function() {
+    var id= $(this).data('id')
+    var description = $(this).data('description')
+    var inventory = parseInt($(this).data('inventory'))
+    // var id = this.dataset.id;
+    // var description = this.dataset.description
+    // var inventory = parseInt(this.dataset.inventory)
+    if (inventory == 0){
+      var data = 'Sold Out'
+    } else{
+      var data = 'Available'
+    }
+      $("#moreInfo-" + id).text(`${data} - ${description}`);
+  })
+})
+
+</script>
