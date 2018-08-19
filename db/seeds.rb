@@ -7,10 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
 
+Product.create(:name => "testing product", :price => Faker::Number.between(1,1500), :inventory =>0, :description => "This is a test description with more text than should be there." )
+
 10.times do
   products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
   Product.create(:name => products.sample, :price => Faker::Number.between(1,1500))
-end
+  end
 5.times do
   Customer.create(:name => Faker::Name.name)
 end
