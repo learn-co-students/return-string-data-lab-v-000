@@ -1,1 +1,12 @@
+<h2>New Product</h2>
+<!-- consider a partial for the form -->
 
+<%= form_for(@product) %>
+  Name: <%= f.text_field :name %><br>
+  Price: <%= f.text_field :price %><br>
+  Description: <%= f.text_area :description %><br>
+  <!-- include inventory? -->
+  Inventory:<%= f.text_field :inventory %><br>
+
+  <%= f.submit %>
+<% end %>

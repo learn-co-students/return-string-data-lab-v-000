@@ -1,1 +1,29 @@
+<h2>Product Index</h2>
 
+<div class="product-index">
+  <% @products.each do |product| %>
+    <%= product.name %><br />
+    <%#= product.price %><br />
+
+    <!-- I want the description truncated  -->
+    <div id="description-<%=product.id%>"><%= truncate product.description %></div>
+    <button class="js-more" data-id="<%= product.id %>" id="More Info">More info</button>
+    <!-- <button class="js-more" data-id="<%= product.id %>">More Info</button> -->
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="UTF-8">
+  $(function() {
+    $(".js-more").on('click', function() {
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(data) {
+        $("#description-" + id).text(data);
+      });
+    });
+  });
+</script>
+
+
+Add a "More Info" button to each product that, when clicked,
+fetches the description and the inventory and displays the
+ result. If there is inventory available, display "Available" and if there isn't, display "Sold Out".
