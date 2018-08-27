@@ -12,25 +12,13 @@
 
 	    $.get("/products/" + id + "/description", function(description) {
 	    	$.get("/products/" + id + "/inventory", function(inv) {
-	    		if (inv === "true") {
-	    			$("#product-" + id).text(description + " - Available")
-	    		} else {
-	    			$("#product-" + id).text(description + " - Sold Out")
+	    		let inventoryText = "<strong>Available</strong>"
+	    		if (inv === "false") {
+	    			inventoryText = "<strong>Sold Out</strong>"
 	    		}
+	    		$("#product-" + id).html("<p>" + description + "</p>" + "<p>" + inventoryText +"</p>")
 	    	});
 	    });
-
-	    // $.get("/products/" + id + "/inventory", function(data) {
-	    // 	if (data === "true") {
-	    // 		$.get("/products/" + id + "/description", function(data) {
-			  //     $("#body-" + id).text(data + " - Available");
-			  //   });
-	    // 	} else {
-	    // 		$.get("/products/" + id + "/description", function(data) {
-			  //     $("#body-" + id).text(data + " - Sold Out");
-			  //   });
-	    // 	} 
-	    // });
 	  });
 	});
 </script>
