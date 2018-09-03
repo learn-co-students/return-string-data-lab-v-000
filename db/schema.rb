@@ -41,10 +41,15 @@ ActiveRecord::Schema.define(version: 20160125172450) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.integer  "price"
+<<<<<<< HEAD
     t.integer  "inventory"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> 2b77f70fdf94141844bc77414eeb7d0253a043ff
   end
 
 end
