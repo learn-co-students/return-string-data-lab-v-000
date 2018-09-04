@@ -9,17 +9,23 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.create(name: params[:name], price: params[:price], description: params[:description], inventory: params[:inventory])
+    @product = Product.create(product_params)
     redirect_to products_path
   end
 
   def inventory
     product = Product.find(params[:id])
-    render plain: product.inventory
+    render plain: product.inventory > 0 ? true : false
   end
 
   def description
     product = Product.find(params[:id])
     render plain: product.description
   end
+
+  private
+
+def product_params
+  params.require(:product).permit(:name, :description, :inventory, :price)
+end
 end
