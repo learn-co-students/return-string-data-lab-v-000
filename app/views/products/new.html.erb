@@ -1,1 +1,8 @@
+<%= form_for @product do |f| %>
+  Name: <%= f.text_field :name %><br />
+  Price: <%= f.number_field :price %><br />
+  Description:<br />
+  <%= f.text_area :description %><br />
+  <%= f.submit %>
 
+<% end %>
