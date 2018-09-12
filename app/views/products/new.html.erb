@@ -1,1 +1,12 @@
 
+<h1>test</h1>
+
+
+<%= form_for @product do |f| %>
+	<p>Name: <%= f.text_field :name %></p>
+	<p>Price: <%= f.text_field :price%></p>
+	<p>Inventory: <%= f.text_field :inventory %></p>
+	<p>Description: <%= f.text_field :description %></p>
+
+	<p><%= f.submit %></p>
+<% end %>
