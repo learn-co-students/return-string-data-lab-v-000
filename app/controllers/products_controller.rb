@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 	end
 
 	def inventory
+		# binding.pry
 		@product = Product.find(params[:id])
 		response =  @product.inventory > 0  ?  'true' : 'false'
 		render plain: response 
