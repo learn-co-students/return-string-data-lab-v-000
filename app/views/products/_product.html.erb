@@ -1,0 +1,7 @@
+<h2><%= product.name %></h2>
+<div class="js-toggle-<%= product.id %>">
+  <p><%= truncate(product.description) %></p>
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
+</div>
+
+<div id="product-<%= product.id %>"></div>
