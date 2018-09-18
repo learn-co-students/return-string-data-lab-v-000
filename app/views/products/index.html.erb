@@ -1,1 +1,21 @@
+<div id="description-<%= product.id %>"><%= truncate product.description %></div>
 
+<button class="js-more" data-id="<%= product.id %>">More...</button>
+
+<script>
+$(function(){
+  $('.js-more').on("click", function(){
+    let id = $(this).data('id');
+    $.get(`/products/${id}/description`, function(description){
+      $.get(`/products/${id}/description`, function(inventory){
+      let inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#product-" + id).html(descriptionText);
+      });
+    });
+  });
+})
+</script>
