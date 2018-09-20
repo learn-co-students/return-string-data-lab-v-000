@@ -1,1 +1,39 @@
+<% @products.each do |product| %>
+<%= render partial: "products", locals: {product: product} %>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inv) {
+        let inve = "Available"
+        if(inv === "false") {
+          inve = "Sold Out"
+        }
+    var more = "<h5>" + description+ "</h5>" + "<p>" + inve + "</p>"
+      $("#body-" + id).html(more);
+      });
+    });
+  });
+});
+
+// $(function () {
+//   $(".js-available").on('click', function(e) {
+//     // get the id from the data attribute
+//     var i = $(this).data("id");
+//     $.get("/products/" + i + "/inventory", function(inv) {
+//       let inve = "Available"
+//       if(inv === "false") {
+//         inve = "Sold Out"
+//       }
+//
+//       $("#inventory-" + i).text(inve);
+//
+//     });
+//     e.preventDefault()
+//   });
+// });
+</script>
