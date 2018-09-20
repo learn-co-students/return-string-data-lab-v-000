@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :invoices
   resources :products
-  get 'products/:id/plain' => 'product#plain'
-  get 'products/:id/inventory' => 'product#inventory'
+  get 'products/:id/plain' => 'products#plain'
+  get 'products/:id/inventory' => 'products#inventory'
 end
