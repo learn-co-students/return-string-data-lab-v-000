@@ -1,3 +1,4 @@
+require 'pry'
 class ProductsController < ApplicationController
   def index
     @products = Product.all
@@ -16,8 +17,14 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def description
+    product = Product.find(params[:id])
+    render plain: product.description
+  end
+
   def inventory
-    self.inventory > 0 ? "true" : "false"
+    product = Product.find(params[:id])
+    render plain: product.inventory_check
   end
 
   private

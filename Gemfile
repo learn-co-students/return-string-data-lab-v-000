@@ -41,6 +41,7 @@ group :development, :test do
   gem 'faker'
   gem 'shoulda'
   gem 'poltergeist', '~> 1.14.0'
+  gem 'pry'
 end
 
 group :development do
