@@ -13,19 +13,16 @@ $(function () {
 
     $.get("/products/" + id + "/description", function(description) {
       // Replace text of body-id div
-      $("#product-" + id).text(description);
-    });
 
-    $.get("/products/" + id + "/inventory", function(inventory) {
-      // Replace text of body-id div
-      if(inventory === "false"){
-        inventoryText = "<strong>Sold Out</strong>";
-      } else if(inventory === "true"){
-        inventoryText = "<strong>Available</strong>";
-      }
-      $("#product-" + id).text(inventory);
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        // Replace text of body-id div
+        var inventoryText = "Available"
+        if(inventory === "false"){
+          inventoryText = "Sold Out";
+        }
+        $("#product-" + id).text(description + " " + inventoryText);
+      });
     });
-
   });
 });
 </script>
