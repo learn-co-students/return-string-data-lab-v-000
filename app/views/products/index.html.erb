@@ -1,1 +1,14 @@
+<% @products.each do |product| %>
+    <%= product.name %>
+    <%= truncate product.description%>
+    <%= product.inventory %>
+    <button type='submit' formmethod='get'
+        name='<%= product.id %>'
+        class='description-link'>More Info</button>
+<% end %>
 
+<div class='long-description'>
+</div>
+
+<div class='inventory'>
+</div>
