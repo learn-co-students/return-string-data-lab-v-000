@@ -1,1 +1,21 @@
+<h1>Products Index</h1>
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <%= product.name %>
+      <button class="js-product-<%=@product.id%>" data-id="<%= product.id%>">
+        More Info</button>
+    </li>
+  <% end %>
+</ul>
 
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.js-product-more').on('click', function(data) {
+      var id = $(this).data('id')
+      $.get('/products/' + id + '/body', function(resp) {
+
+      })
+    })
+  })
+</script>
