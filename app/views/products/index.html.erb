@@ -3,7 +3,7 @@
   <% @products.each do |product| %>
     <li>
       <%= product.name %>
-      <button class="js-product-<%=@product.id%>" data-id="<%= product.id%>">
+      <button class="js-product" data-id="<%= product.id%>">
         More Info</button>
     </li>
   <% end %>
@@ -11,10 +11,11 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $('.js-product-more').on('click', function(data) {
+    $('.js-product').on('click', function() {
       var id = $(this).data('id')
       $.get('/products/' + id + '/body', function(resp) {
-
+        debugger
+        $('.js-product-' + id).html(resp.html())
       })
     })
   })

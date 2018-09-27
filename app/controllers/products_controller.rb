@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
 
   def body
     @product = find_product
+
+    render layout:false
   end
 
   private
