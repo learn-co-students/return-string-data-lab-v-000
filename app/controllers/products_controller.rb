@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def body
+  def description
     @product = Product.find(params[:id])
     render plain: @product.description
   end
@@ -24,9 +24,9 @@ class ProductsController < ApplicationController
   def inventory
     @product = Product.find(params[:id])
     if @product.inventory > 0
-      @inventory = "Available"
+      @inventory = true
     else
-      @inventory = "Sold Out"
+      @inventory = false
     end
     render plain: @inventory
   end
