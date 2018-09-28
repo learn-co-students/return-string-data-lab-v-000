@@ -1,1 +1,33 @@
+<%@products.each do |p|%>
+<div class="info_body">
+  <h3><%=p.name%></h3>
+    <%if p.description%>
+      <p class="body_<%=p.id%>"><%=p.description.truncate(25)%></p>
+        <button class="button_body button_<%=p.id%>" data-id="<%=p.id%>">More Info</button><br>
+    <%end%>
+  </div>
+<%end%>
+<br>
+<%=link_to("Create Product", new_product_path)%>
 
+<!-- <script type="text/javascript">
+  $(function () {
+    $(".button_body").on("click", function () {
+      var id = $(this).data("id")
+      $.get(`/products/${id}/description`, function (response_description) {
+        var description = response_description
+        console.log("description")
+        // $(".body_" + id).text(response)
+        // $(".button_" + id).hide()
+        $.get(`/products/${id}/inventory`, function (response_inventory) {
+          if (response_inventory == true)
+            let inventory = "Available"
+          else
+            let inventory = "Sold Out"
+          var info = description + " - " + inventory
+          $(".body_" + id).text(info)
+        })
+      })
+    })
+  }) -->
+<!-- </script> -->
