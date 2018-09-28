@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     binding.pry
     # render plain: @product.inventory > 0 ? true : false
-    if @product.inventory > 0
+    if @product.inventory === 0
       return render plain: true
     else
        return render plain: false
