@@ -14,7 +14,6 @@
     $('.js-product').on('click', function() {
       var id = $(this).data('id')
       $.get('/products/' + id + '/body', function(resp) {
-        debugger
         $('#button-' + id).html(resp)
       })
     })
