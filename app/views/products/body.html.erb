@@ -1,5 +1,5 @@
 <strong><%= @product.description %></strong>
-<% if @product.inventory > 0 %>
+<% if @product.inventory && @product.inventory > 0 %>
   <p>Available</p>
 <% else %>
   <p>Sold Out</p>
