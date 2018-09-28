@@ -1,1 +1,12 @@
-
+<%@products.each do |p|%>
+<div class="info_body">
+  <h3><%=p.name%></h3>
+    <%if p.description%>
+      <p class="body_<%=p.id%>"><%=p.description.truncate(25)%></p>
+        <button class="button_body button_<%=p.id%>" data-id="<%=p.id%>">More Info</button>
+        <p class="inventory_<%=p.id%>"></p><br>
+    <%end%>
+  </div>
+<%end%>
+<br>
+<%=link_to("Create Product", new_product_path)%>
