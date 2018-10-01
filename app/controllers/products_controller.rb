@@ -15,12 +15,7 @@ class ProductsController < ApplicationController
 
   def description
     @product = Product.find_by(id: params[:id])
-
-    if @product.inventory == 0
-      render plain: @product.description + " " + "Sold Out"
-    else
-      render plain: @product.description
-    end
+    render plain: @product.description
   end
 
   def inventory
