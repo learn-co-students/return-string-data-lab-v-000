@@ -1,1 +1,27 @@
 
+<h2>Products Index Page</h2>
+<table>
+  <tr>
+    <th>Product Id</th>
+    <th>Product Name</th>
+    <th>Product Description</th>
+    <th>Product Inventory</th>
+  </tr>
+  <%=@products.size %>
+  <% @products.each do |product| %>
+    <%= render partial: "product", locals: {product: product} || "No products" %>
+  <% end %>
+
+</table>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      // Replace text of body-id div
+      $("#description-" + id).text(data);
+    });
+  });
+});
+</script>
