@@ -1,1 +1,29 @@
+<h1>Products</h1>
+
+<% @products.each do |p| %>
+    <%= render p %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+        $('.js-more-product-details').on('click', function(){
+            const button = this;
+            const id = $(this).data('product-id');
+            var description = null;
+            var inventory = null;
+
+            $.get("products/" + id + "/inventory", function(res){
+                inventory = res == 'true' ? "Available" : "Sold Out"
+
+                $.get("products/" + id + "/description", function(res){
+                    description = res;
+
+                    $(".product-details-" + id).html(description + "<br>" + inventory);
+
+                    button.remove();
+                });
+            });
+        })
+    })
+</script>
 
