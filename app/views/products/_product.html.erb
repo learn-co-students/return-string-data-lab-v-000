@@ -1,0 +1,10 @@
+<div>
+    <strong><%= product.name %> | $<%= product.price %> </strong>
+    <br>
+    <div class='product-details-<%= product.id %>'>
+        <%= truncate(product.description) %>
+    </div>
+    <button class='js-more-product-details' data-product-id='<%= product.id %>'>More Info</button>
+    <br>
+    <br>
+</div>

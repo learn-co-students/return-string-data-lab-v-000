@@ -19,7 +19,7 @@ RSpec.describe ProductsController, type: :controller do
   describe "GET inventory" do
     it 'returns true or false appropriately' do
       p1 = Product.create(@product_attributes)
-      p2 = Product.create(name: "No Inventory", inventory: 0)
+      p2 = Product.create(name: "No Inventory", inventory: 0, price: 4, description: "A stub description to satisfy validator")
       get :inventory, id: p1.id
       expect(response.body).to eq "true"
       get :inventory, id: p2.id

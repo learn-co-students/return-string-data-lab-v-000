@@ -6,7 +6,7 @@ RSpec.describe "Product Index", type: :feature do
   end
 
   it 'gets the description and inventory', js: true do
-    product = Product.create!(name: "Test Product", inventory: 0, description: "This is a test description with more text than should be there.")
+    product = Product.create!(name: "Test Product", price: 4, inventory: 0, description: "This is a test description with more text than should be there.")
     visit products_path
     expect(page).to have_content product.name
     expect(page).not_to have_content product.description
