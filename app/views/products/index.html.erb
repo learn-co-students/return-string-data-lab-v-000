@@ -19,10 +19,11 @@
         $("#description-" + id).text(description);
       });
       $.get("/products/" + id + "/inventory", function(status) {
+        let inventory;
         if (status === "false") {
-          var inventory = "Inventory: Sold Out";
+          inventory = "Inventory: Sold Out";
         } else {
-          var inventory = "Inventory: Available";
+          inventory = "Inventory: Available";
         }
         $("#inventory-" + id).text(inventory)
       });
