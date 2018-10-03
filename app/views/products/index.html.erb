@@ -1,7 +1,31 @@
 <% @products.each do |prod| %>
-<h1> <%= prod.name %> </h1>
-<p> <%= truncate prod.description %></p>
-<div id="body-inventory-<%=prod.id%>">
-  <button id="js-more" data-id="<%=prod.id%>">More Info </button>
-</div>
+  <h1> <%= prod.name %> </h1>
+  <p> <%= truncate prod.description %></p>
+
+  <button id="js-more" data-id="<%=prod.id%>">More Info</button>
+
+  Product Description: <div id="description-<%=prod.id%>"></div>
+
+  Product Status: <div id="inventory-<%=prod.id%>"></div>"
 <% end %>
+
+<script id="js-more" type="text/javascript" charset="utf-8">
+  $(function(){
+    $(".js-more").on("click", function(){
+      // grab the id of the specific product from info stored in the button
+      var id = $(this.data("id"));
+      // make ajax request to our API endpoint which holds plain text of the description
+      $.get("/products" + id + "/description", function(desc){
+        // append the description to the specific html div with id = body-product-id
+        $("#description-" + id).text(desc);
+      })
+      // make ajax request to our API endpoint which should return "true" or "false" as plain text
+      $.get("/products" + id + "/inventory", function(boolean){
+        // append "Available or Sold Out depending on what the inventory returns"
+        if (boolean){
+          $.get("inventory-" + id).text("Available");
+        } else {
+          $.get("inventory-" + id).text("Sold Out");
+        }
+      })
+  })

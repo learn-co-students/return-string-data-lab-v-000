@@ -11,10 +11,15 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     render :index
-
   end
 
   def inventory
+    product = Product.find(params[:id])
+    if product.inventory
+      render plain: "true"
+    else
+      render plain: "false"
+    end
   end
 
   def description
