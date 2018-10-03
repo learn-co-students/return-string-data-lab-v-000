@@ -10,8 +10,8 @@ RSpec.describe "Product Index", type: :feature do
     visit products_path
     expect(page).to have_content product.name
     expect(page).not_to have_content product.description
-    # click_button "More Info"
-    # expect(page).to have_content product.description
+    click_button "More Info"
+    expect(page).to have_content product.description
     expect(page).to have_content "Sold Out"
     product.inventory = 1
     product.save
