@@ -22,7 +22,7 @@
       // make ajax request to our API endpoint which should return "true" or "false" as plain text
       $.get("/products" + id + "/inventory", function(boolean){
         // append "Available or Sold Out depending on what the inventory returns"
-        if (boolean){
+        if (boolean === "true"){
           $.get("inventory-" + id).text("Available");
         } else {
           $.get("inventory-" + id).text("Sold Out");
