@@ -6,7 +6,7 @@
 
 
 
-  Product Description: <div class="description-<%=prod.id%>"></div>
+  Product Description: <div id="description-<%=prod.id%>"></div>
   <button class="js-more" data-id="<%=prod.id%>">More Info</button><br>
   <!-- when adding multiple buttons an id isnt appropriate.  -->
 
@@ -28,20 +28,21 @@ REMEMBER:
       // grab the id of the specific product from info stored in the button
       console.log("hello")
       var id = $(this).data("id");
-
+      //debugger;
       // make ajax request to our API endpoint which holds plain text of the description
       $.get("/products/" + id + "/description", function(desc){
-        debugger;
+
         // append the description to the specific html div with id = body-product-id
         $("#description-" + id).text(desc);
       })
       // make ajax request to our API endpoint which should return "true" or "false" as plain text
       $.get("/products/" + id + "/inventory", function(boolean){
+        //debugger
         // append "Available or Sold Out depending on what the inventory returns"
         if (boolean === "true"){
-          $.get("inventory-" + id).text("Available");
+          $("#inventory-" + id ).text("Available");
         } else {
-          $.get("inventory-" + id).text("Sold Out");
+          $("#inventory-" + id).text("Sold Out");
         }
       })
     })

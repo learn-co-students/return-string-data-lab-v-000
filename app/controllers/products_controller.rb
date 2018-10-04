@@ -27,7 +27,8 @@ class ProductsController < ApplicationController
   def description
     product = Product.find(params[:id])
     #binding.pry
-    render plain: product.description if product.description
+    render plain: product.description
+    #console.log(product.description)
   end
 
 
