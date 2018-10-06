@@ -1,11 +1,9 @@
 
 <% @products.each do |product| %>
     <h1><%= product.name %></h1>
-    <%=  product.description.truncate(30) %>...
-     <%#= link_to "More Info", url: "products/#{product.id}/description", :class => "js-get-product-description" %>
-
+    <div class="product-description-trunc"><%=  product.description.truncate(30) %>
     <a href="products/<%=product.id%>/description"
-        data-id="<%=product.id%>" class="js-get-product-description">MMore Info</a>
+        data-id="<%=product.id%>" class="js-get-product-description">More Info</a></div>
     <div class="product-description"></div>
     <div class="product-inventory"></div>
     <br>

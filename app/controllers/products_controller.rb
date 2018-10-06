@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
     end
 
     def description
+        # binding.pry
         @product = Product.find_by(id: params[:id].to_i)
 
         render plain: @product.description
@@ -33,7 +34,7 @@ class ProductsController < ApplicationController
     end
 
     def inventory
-        binding.pry
+        # binding.pry
         @product = Product.find(params[:id].to_i)
         if @product.inventory == nil || @product.inventory == 0
             render plain: "false"

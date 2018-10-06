@@ -7,12 +7,21 @@ $(function(){
           method: "GET",
           contentType: 'application/json; charset=utf-8'
           }).success(function(json){
-            $('.product-description').html(json);
+              var c = json
+
+            $('.product-description').append().html(c);
+
+            $('.product-description-trunc').hide()
         })
-        // debugger
+
         $.get(`products/${this.dataset["id"]}/inventory`, function(json){
-            // debugger
-            $('.product-description').html(json);
+
+             if(json === "false"){
+                $('.product-inventory').append().html("Sold Out");
+              }else{
+                $('.product-inventory').append().html("Available");
+              }
+
         })
         e.preventDefault()
     })
