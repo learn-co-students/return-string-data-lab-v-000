@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8">
 $(function (){
 $('.js-more').on('click', function(){
-  const id = $(this).data('id');
+  var id = $(this).data('id');
   $.get(`/products/${id}/description`, function(description){
     // debugger
     $(`#body-${id}`).append(`<p>${description}</p>`);
