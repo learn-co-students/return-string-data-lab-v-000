@@ -1,1 +1,11 @@
 
+<% @products.each do |product| %>
+    <h1><%= product.name %></h1>
+    <div class="product-description-trunc"><%=  product.description.truncate(30) %>
+    <a href="products/<%=product.id%>/description"
+        data-id="<%=product.id%>" class="js-get-product-description">More Info</a></div>
+    <div class="product-description"></div>
+    <div class="product-inventory"></div>
+    <br>
+
+ <% end %>
