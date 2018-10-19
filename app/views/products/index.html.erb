@@ -13,12 +13,12 @@
    $(".js-more").on('click', function(){
 
      var id = $(this).data('id')
-     $.get('/products/'+ id +'/description', function(e){
-       $.get('/products/'+ id +'/inventory', function(y){
-       if(true){
-         $("#body-"+id).append(e).append('Available')
+     $.get('/products/'+ id +'/description', function(description){
+       $.get('/products/'+ id +'/inventory', function(inventory){
+       if( inventory ==="true"){
+         $("#body-"+id).append(description).append('Available')
        }else {
-         $("#body-"+id).append(e).append('Sold Out')
+         $("#body-"+id).append(description).append('Sold Out')
        }
        })
      })
