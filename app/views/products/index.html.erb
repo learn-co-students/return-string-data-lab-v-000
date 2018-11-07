@@ -22,15 +22,17 @@
   $(function () {
     $(".js-more").on('click', function() {
       let id = $(this).data("id");
-      $.get(`/products/${id}/description`, function(data) {
-        $("#body-" + id).text(data);
-      });
-      $.get(`/products/${id}/inventory`, function(data) {
-        if(data == "true") {
-          $("#inv-" + id).text("Available");
-        };
-        if(data == "false") {
-          $("#inv-" + id).text("Sold Out");
+      $.get(`/products/${id}/description`, function(description) {
+
+        $.get(`/products/${id}/inventory`, function(invStatus) {
+          let inv = "Available";
+          if(invStatus === "false") {
+            inv = "Sold Out";
+          };
+
+          let displayText = `<p> ${description} </p> <p> ${inv}`;
+            $("#body-" + id).text(displayText);
+          });
       };
     });
    });
