@@ -1,3 +1,5 @@
+<h1> All Products: </h1>
+
 <ul>
   <% @products.each do |product| %>
     <li>
@@ -8,7 +10,7 @@
       <div id="inv-<%= product.id %>">
         <p>   </p>
       </div>
-      <button class="js-more" data-id="<%= product.id %>"> More Info </button>
+      <button class="js-more" data-id="<%= product.id %>">More Info</button>
       <br>
       <br>
 
