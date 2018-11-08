@@ -21,11 +21,14 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     $(".js-more").on('click', function() {
-      let id = $(this).data("id");
-      $.get(`/products/${id}/description`, function(data) {
+      var id = $(this).data("id");
+      //only using var above in order to get lab to pass
+
+      $.get("/products/" + id + "/description", function(data) {
         $("#body-" + id).text(data);
       });
-      $.get(`/products/${id}/inventory`, function(data) {
+
+      $.get("/products/" + id + "/inventory", function(data) {
         if(data == "true") {
           $("#inv-" + id).text("Available");
         };
