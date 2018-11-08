@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   end
   
   def inventory
+    binding.pry
     product = Product.find(params[:id])
     render plain: product.inventory
   end
