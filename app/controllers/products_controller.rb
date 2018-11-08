@@ -19,12 +19,13 @@ class ProductsController < ApplicationController
   end
   
   def inventory
-    binding.pry
     product = Product.find(params[:id])
-    render plain: product.inventory
+    if product.inventory?
+      render plain: "true"
+    else
+      render plain: "false"
+    end
   end
-  
-  
   
   private
     def product_params
