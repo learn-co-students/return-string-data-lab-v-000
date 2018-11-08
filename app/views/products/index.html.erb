@@ -1,1 +1,41 @@
+<h1> All Products: </h1>
 
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <strong> <%= product.id %>) <%= product.name%> </strong>
+      <div id="body-<%= product.id %>">
+        <p> <%= truncate product.description %> </p>
+      </div>
+      <div id="inv-<%= product.id %>">
+        <p>   </p>
+      </div>
+      <button class="js-more" data-id="<%= product.id %>">More Info</button>
+      <br>
+      <br>
+
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-more").on('click', function() {
+      var id = $(this).data("id");
+      //only using var above in order to get lab to pass
+
+      $.get("/products/" + id + "/description", function(data) {
+        $("#body-" + id).text(data);
+      });
+
+      $.get("/products/" + id + "/inventory", function(data) {
+        if(data == "true") {
+          $("#inv-" + id).text("Available");
+        };
+        if(data == "false") {
+          $("#inv-" + id).text("Sold Out");
+      };
+    });
+   });
+  });
+</script>
