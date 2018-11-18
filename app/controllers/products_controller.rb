@@ -32,4 +32,15 @@ class ProductsController < ApplicationController
 		@products = Product.all
 	end
 
+	def body
+		product = Product.find(params[:id])
+		if product.inventory == 0
+			value = "Sold Out"
+		else
+			value = "Available"
+		end
+		value = value + product.description + " : " + product.inventory.to_s
+   		render plain: value
+  	end
+
 end
