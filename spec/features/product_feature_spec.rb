@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+require 'pry'
 RSpec.describe "Product Index", type: :feature do
   before do
     Product.destroy_all
