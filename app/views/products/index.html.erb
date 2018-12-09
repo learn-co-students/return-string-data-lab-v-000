@@ -1,1 +1,24 @@
+<ul>
+<% @products.each do |product| %>
+    <li><h1><%= product.name %><h1>
+    <div id="body-<%= product.id %>"><%= truncate product.description %>....</div>
+    <button class="js-more" data-id="<%= product.id %>">More Info...</button></li>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id"); // using var instead of let to pass tests, ES6 issue
+    $.get("/products/" + id + "/description", function(data) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inv = "Available";
+        if(inventory === 'false'){
+          inv = "Sold Out";
+        }
+
+      $("#body-" + id).text(data + inv);
+      });
+    });
+  });
+});
+</script>
