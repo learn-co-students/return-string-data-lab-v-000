@@ -7,13 +7,13 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def new
+  def create
     @product = Product.new(products_params)
     @product.save
   end
 
   private
   def products_params
-     params.require(:project).permit(:name, :price, :description, :inventory)
+     params.require(:product).permit(:name, :price, :description, :inventory)
   end
 end
