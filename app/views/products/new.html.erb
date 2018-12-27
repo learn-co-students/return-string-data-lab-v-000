@@ -3,7 +3,9 @@
 <%= form_for @product, url: products_path do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %><br><br>
-<%= f.label :description %><br>
+<%= f.label :price %>
 <%= f.text_field :price %><br><br>
+<%= f.label :description %><br>
+<%= f.text_field :description %><br><br>
 <%= f.submit "Create Product"%>
 <% end %>

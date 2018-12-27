@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
 
     def inventory
+        
+    end
+
+    def description
     end
     
     def index
@@ -19,6 +23,6 @@ class ProductsController < ApplicationController
     private
 
   def product_params
-    params.require(:product).permit(:name, :price)
+    params.require(:product).permit(:name, :price, :inventory, :description)
   end 
 end
