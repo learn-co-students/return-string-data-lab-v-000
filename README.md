@@ -14,8 +14,8 @@ use AJAX to bring data to the page.
 ## Instructions
 
 1.  Add a product `description` and an `inventory` count to the `Product`
-    model.
-2.  Create an index page for all products that displays name and a truncated description, but not inventory.
+    model. xxx
+2.  Create an index page for all products that displays name and a truncated description, but not inventory. xx
 3.  Create the new product page so you can add new products, otherwise the rest of this might be kind of underwhelming!
 4.  Add a route and action that gets just a product description as a
     plain string.
