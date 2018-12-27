@@ -1,1 +1,9 @@
+<h1>Make a New Product</h1>
 
+<%= form_for @product, url: products_path do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br><br>
+<%= f.label :description %><br>
+<%= f.text_field :price %><br><br>
+<%= f.submit "Create Product"%>
+<% end %>

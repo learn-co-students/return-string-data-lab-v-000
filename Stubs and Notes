@@ -1,0 +1,16 @@
+when product is created, it is listed on products page, not a show page
+
+
+
+
+
+
+products view
+    index
+        name
+        description
+        not inventory
+products view
+    new
+        can make a new product
+
