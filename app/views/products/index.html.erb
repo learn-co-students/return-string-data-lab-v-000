@@ -1,1 +1,8 @@
 
+<!-- Create an index page for all products that displays name and a truncated description, but not inventor -->
+
+
+
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>

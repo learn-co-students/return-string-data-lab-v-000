@@ -1,0 +1,8 @@
+<div class="">
+  <br>
+  <h1><%= product.id %>: <%= product.name %></h1>
+  <p>$<%= product.price %></p>
+  <%=  product.description %>
+  <%= truncate product.description %>
+  <div id="body-<%= product.id %>"><%= truncate product.description %></div>
+</div>
