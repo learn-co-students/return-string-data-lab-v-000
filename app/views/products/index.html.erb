@@ -7,8 +7,25 @@ $(function () {
   $(".js-more").on('click', function() {
     let id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
-      // Replace text of body-id div
       $("#description-" + id).text(data);
+    $.get("/products/" + id + "/inventory", function(data) {
+
+      gets inventory amount
+      shows message depending on inventory amount
+      where is it showing the message?
+        put it in a div 
+        
+
+      let productAvailability = "<strong>Available</strong>"
+     
+     if inventory < 0, 
+     productAvailability = "<strong>Available</strong>"
+     else inventory
+     
+    
+      $("#inventory-" + id).text(data);
+
+
     });
   });
 });
