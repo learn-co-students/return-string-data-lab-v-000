@@ -1,3 +1,27 @@
+1. customer sees product index
+2. customer can see product inventory on product index?
+    customer orders product
+    inventory is checked
+    inventory needs to be an attribute of product
+    have to take in an instance of product
+    
+    
+    
+    
+    
+    
+    orders and ordered_products need to have a join table
+
+3. customer can make an order if inventory > 0
+
+
+
+
+inventory needs to count how many products of a specific kind there are
+
+index view needs to show 
+
+
 when product is created, it is listed on products page, not a show page
 
 

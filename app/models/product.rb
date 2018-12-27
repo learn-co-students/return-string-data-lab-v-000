@@ -5,6 +5,6 @@ class Product < ActiveRecord::Base
   def description
   end
 
-  def inventory
+  def self.inventory
   end
 end
