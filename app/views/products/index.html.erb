@@ -3,3 +3,57 @@
 <div id="body-<%= product.id %>"><%= truncate product.description %></div>
 <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      //debugger
+      $.get("/products/" + id + "/inventory", function(count){
+        // debugger
+        if (count == "nil") {
+          var inv = "NIL";
+        }
+        else if (count == "true") {
+          var inv = "Available";
+        }
+        else if (count == "false") {
+          var inv = "Sold Out";
+        }
+        var addtext = "<p>" + data + " " + inv + "</p>";
+        $("#body-" + id).html(addtext);
+      })
+
+    });
+
+  });
+});
+
+// $(function () {
+//   $(".js-more").on('click', function() {
+//     // get the id from the data attribute
+//
+//     var id = $(this).data("id");
+//     $.get("/products/" + id + "/inventory", function(data) {
+//       // debugger
+//       if (data == "nil"){
+//         $("#body-" + id).append(data);
+//       }
+//       else if (data == "true") {
+//         term = "Available"
+//         $("#body-" + id).append(term);
+//       }
+//       else if (data == "false") {
+//         term = "Sold Out"
+//         $("#body-" + id).append(term);
+//       }
+//
+//     });
+//
+//   });
+// });
+
+</script>

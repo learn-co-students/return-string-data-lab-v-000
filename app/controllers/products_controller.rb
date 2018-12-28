@@ -18,7 +18,11 @@ class ProductsController < ApplicationController
 
   def inventory
     #binding.pry
-    answer = Product.find(params[:id]).inventory > 0 ? true:false
+    if Product.find(params[:id]).inventory == nil
+      answer = "nil"
+    else
+      answer = Product.find(params[:id]).inventory > 0 ? true:false
+    end
     render plain: answer
   end
 
