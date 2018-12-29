@@ -20,8 +20,8 @@ $(function () {
       status = data == "true" ? "Available" : "Sold Out";
       $("#inventory_count-" + id).text(status);          //ties back to div id above
     })
-
     $.get("/products/" + id + "/description", function(data) {      //ties back to route
+      //Replace text of item_description-id div
     $("#item_description-" + id).text(data);                  //ties back to the div id above
     })
   })

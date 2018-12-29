@@ -1,4 +1,4 @@
-
+<h2>Add New Product</h2>
 
 <%= form_for @product do |f| %>
 <%= f.label :name %>
@@ -9,5 +9,6 @@
 <%= f.text_area :description %><br>
 <%= f.label :inventory %>
 <%= f.text_field :inventory %><br>
-<%= f.submit %>  <!--Will say Create Product on button. Put something else in quotes if want different-->
+<%= f.submit %> <!--Will say Create Product on button. Put something else in quotes if want different-->
+
 <% end %>

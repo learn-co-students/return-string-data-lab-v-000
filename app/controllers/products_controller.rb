@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def new
     @product = Product.new
   end
@@ -13,10 +17,6 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
-
   def description
     product = Product.find(params[:id])
     render plain: product.description
@@ -24,13 +24,16 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    render plain: product.inventory_check
+    render plain: product.check_inventory
   end
 
+
+
+
   private
+
   def product_params
     params.require(:product).permit(:name, :price, :description, :inventory)
   end
-
 
 end
