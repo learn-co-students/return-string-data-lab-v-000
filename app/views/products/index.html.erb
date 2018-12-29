@@ -3,25 +3,26 @@
 <% @products.each do |product| %>
 <li>
   <h3><%= product.name %></h3>
-  <div id="description-<%= product.id %>"><%= truncate product.description %></div>
-  <div id="inventory-<%= product.id %>"></div>
+  <div id="item_description-<%= product.id %>"><%= truncate product.description %></div>
+  <div id="inventory_count-<%= product.id %>"></div>  <!--This won't display anything-->
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
+</li>
 </ul>
 
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
   // get the id from the data attribute
-    var id = $(this).data("id");
-    $.get("/products/" + id + "/inventory", function(data) {
-      var status;
+    var id = $(this).data("id");               //had to use var, let wouldn't pass test
+    $.get("/products/" + id + "/inventory", function(data) {    //ties back to route
+      var status;                        //make var for status
       status = data == "true" ? "Available" : "Sold Out";
-      $("#inventory-" + id).text(status);
+      $("#inventory_count-" + id).text(status);          //ties back to div id above
     })
 
-    $.get("/products/" + id + "/description", function(data) {
-    $("#description-" + id).text(data);
+    $.get("/products/" + id + "/description", function(data) {      //ties back to route
+    $("#item_description-" + id).text(data);                  //ties back to the div id above
     })
   })
 })
