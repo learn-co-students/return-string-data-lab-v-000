@@ -13,7 +13,7 @@ RSpec.describe "Product Index", type: :feature do
     expect(page).not_to have_content product.description
     click_button "More Info"
     
-    # expect(page).to have_content product.description
+    expect(page).to have_content product.description
     # screenshot_and_open_image
     expect(page).to have_content "Sold Out"
     product.inventory = 1
