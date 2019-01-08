@@ -38,6 +38,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'faker'
   gem 'shoulda'
   gem 'poltergeist', '~> 1.14.0'
