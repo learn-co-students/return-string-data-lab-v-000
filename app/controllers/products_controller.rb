@@ -8,11 +8,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    if @product = Product.create(product_params)
-      raise @product.inspect
-    else
-      render "form"
-    end
+    @product = Product.create(product_params)
+    redirect_to products_path
+  end
+
+  def description
+    product = Product.find(params[:id])
+    render plain: product.description
   end
 
   private
