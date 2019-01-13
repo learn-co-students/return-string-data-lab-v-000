@@ -1,1 +1,25 @@
 
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
+
+<!-- 4.  This script connects the button created in the _product partial go be linked to an event listener.  This goes here instead of the partial to be only run one time instead of once for every product -->
+
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+      $.get("/products/" + id + "/inventory", function(inventory) {
+        var inventoryText = "<strong>Available</strong>";
+        if(inventory === "false"){
+          inventoryText = "<strong>Sold Out</strong>";
+        }
+        var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+        $("#body-" + id).html(descriptionText);
+      });
+    });
+  });
+});
+</script>
