@@ -1,0 +1,7 @@
+<h1><%= product.id %>: <%= product.name %></h1>
+<div id="body-<%= product.id %>">
+inventory:<span id='inventory'><%=product.inventory%></span><br><%= truncate product.description %></div>
+
+<!-- #3 Add button to partial so each product has a way to request the body of the product-->
+<button class="js-more" data-id="<%= product.id %>">More Info</button>
+
