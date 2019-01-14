@@ -13,11 +13,22 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def inventory
-    product = Product.find(params[:id])
-    render plain: product.inventory > 0 ? true : false
-  end
+def inventory 
 
+#This line cause an undefined method error and does not display page         
+# product.inventory > 0 ? true : false 
+     
+     
+     product = Product.find(params[:id])
+       if product 
+         "true"
+        else 
+          "false"
+        end  
+#Need to revisit - This renders page but still has issues with product/:id/inventory, as well as tests.      
+      render plain: product.inventory 
+  end 
+  
   def description
     product = Product.find(params[:id])
     render plain: product.description
