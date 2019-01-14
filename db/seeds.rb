@@ -9,7 +9,9 @@ products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "la
 
 10.times do
   products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
-  Product.create(:name => products.sample, :price => Faker::Number.between(1,1500))
+  description = Faker::MichaelScott.quote
+  inventory = Faker::Number.between(1,1000)
+  Product.create(:name => products.sample, :price => Faker::Number.between(1,1500), description: description, inventory: inventory)
 end
 5.times do
   Customer.create(:name => Faker::Name.name)
