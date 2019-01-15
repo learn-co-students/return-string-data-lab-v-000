@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160125172450) do
     t.string   "name"
     t.integer  "price"
     t.string   "description"
-    t.integer  "count"
+    t.integer  "inventory"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
