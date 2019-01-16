@@ -1,1 +1,12 @@
+<%= form_for @product do |f| %> 
+<%= f.label :name %>:
+<%= f.text_field :name %><br />
 
+<%= f.label :description %>:
+<%= f.text_area :description %><br />
+
+<%= f.label :inventory %>:
+<%= f.check_box :inventory, {}, "true", "false" %><br />
+
+<%= f.submit %>
+<% end %>
