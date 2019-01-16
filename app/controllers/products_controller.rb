@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+
 	def index
 		@products = Product.all
 	end
@@ -24,11 +25,7 @@ class ProductsController < ApplicationController
   	def inventory
   		product = Product.find(params[:id])
 
-  		render plain: if product.inventory >= 1
-  			"true"
-  		else
-  			"false"
-  		end
+  		render plain: product.inventory > 0 ? "true" : "false"
   	end
 
 	private
