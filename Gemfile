@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'rb-readline'
 gem 'pry'
 gem 'pry-nav'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
