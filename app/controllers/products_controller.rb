@@ -33,5 +33,4 @@ private
     params.require(:product).permit(:name, :price, :description, :inventory)
   end
 
-
 end
