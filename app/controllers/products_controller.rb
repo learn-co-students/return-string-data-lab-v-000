@@ -1,10 +1,8 @@
 class ProductsController < ApplicationController
 
-
   def index
     @products = Product.all
   end
-
 
   def new
     @product = Product.new
@@ -25,7 +23,6 @@ class ProductsController < ApplicationController
     product = set_product
     render plain: product.inventory > 0 ? true : false
   end
-
 
 private
   def set_product
