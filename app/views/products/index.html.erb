@@ -2,30 +2,33 @@
 <h2> Products </h2>
 
 <% @products.each do |product|%>
-<h4> <%= product.name %></h4>
-
-<div id="product-<%= product.id %>"><%= truncate product.description %></div><br>
-
-<button class="js-more" data-id="<%= product.id %>">More Info</button>
+<%= render partial: "product", locals: {product: product} %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-  <!-- test only worked with using var vs. let -->
 
-$(function () {
-  $(".js-more").on('click', function(){
-  var id = $(this).data("id");
-    $.get("/products/" + id + "/description", function(description) {
-    $.get("/products/" + id + "/inventory", function(inventory){
-      var inventoryText = "Available";
-      if(inventory === "false"){
-        inventoryText = "Sold Out";
-      }
-      var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+ // test only worked with using var not let
+  $(function () {
+   $(".js-more").on('click', function(){
+
+    // get id from data attribute
+    var id = $(this).data("id");
+
+    // AJAX Requests
+     $.get("/products/" + id + "/description", function(description) {
+     $.get("/products/" + id + "/inventory", function(inventory){
+
+       // find inventory status
+       var inventoryText = (inventory === "true") ? "Available" : "Sold Out";
+
+       // put desciption and inventory API call data in a variable
+       var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+
+      // put AJAX call data in document element id of the product id
       $("#product-" + id).html(descriptionText);
 
-      });
+       });
     });
   });
-});
- </script>
+ });
+</script>
