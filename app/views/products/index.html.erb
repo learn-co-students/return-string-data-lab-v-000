@@ -1,1 +1,34 @@
 
+<h2> Products </h2>
+
+<% @products.each do |product|%>
+<%= render partial: "product", locals: {product: product} %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+
+ // test only worked with using const or var not let
+  $(function () {
+   $(".js-more").on('click', function(){
+
+    // get id from data attribute
+    const id = $(this).data("id");
+
+    // AJAX Requests
+     $.get("/products/" + id + "/description", function(description) {
+     $.get("/products/" + id + "/inventory", function(inventory){
+
+       // find inventory status
+       const inventoryText = (inventory === "true") ? "Available" : "Sold Out";
+
+       // put desciption and inventory API call data in a variable
+       const descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+
+      // put AJAX call data in document element id of the product id
+      $("#product-" + id).html(descriptionText);
+
+       });
+    });
+  });
+ });
+</script>
