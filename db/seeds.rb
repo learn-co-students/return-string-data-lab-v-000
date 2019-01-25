@@ -23,3 +23,4 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+Product.create(name: "Television", price: 100, description: "This is a lovely TV!kjHSDKJhsdjkzkjfhkjzdhfkjsdhfkjhsdkjfhsdkjfhskjdfhkjsdfjkhsdkjf", inventory: 4)
