@@ -3,7 +3,7 @@
   <%= render partial: "product", locals: {product: product} %>
 <% end %>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
     // get the id from the data attribute
@@ -18,6 +18,27 @@ $(function () {
         var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
         $("#product-" + id).html(descriptionText);
       });
+    });
+  });
+});
+</script> -->
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    const id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(description) {
+        $("#description-" + id).text(description);
+    });
+
+    $.get("/products/" + id + "/inventory", function(inventory_data) {
+      // Replace text of body-id div
+      var inventoryText = "Available"
+      if(inventory_data === 'false') {
+        inventoryText = "Sold Out";
+      }
+      $("#inventory-" + id).text(inventoryText);
     });
   });
 });
