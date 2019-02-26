@@ -23,3 +23,5 @@ end
   order.products << Product.find(Product.all.collect(&:id).sample)
 end
 
+Product.create(name: "New Product", price: Faker::Number.between(1,1500), inventory: 10, description: "I want a hippo for christmas, only a hippo will do i want a blah blah blah blah blah I want a hippo for christmas, only a hippo will do i want a blah blah blah blah blah" )
+Product.create(name: "New Product 2", price: Faker::Number.between(1,1500), inventory: 0, description: "I want a hippo for christmas, only a hippo will do i want a blah blah blah blah blah I want a hippo for christmas, only a hippo will do i want a blah blah blah blah blah" )
