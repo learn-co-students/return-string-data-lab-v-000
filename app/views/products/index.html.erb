@@ -3,11 +3,8 @@
 <div id="product-<%=product.id%>"><%= product.name %>
 <%= truncate product.description %></div>
 
-<<<<<<< HEAD
 <button class="js-more" data-id="<%=product.id %>">More Info</button>
-=======
-<button class="js-more" data-id="<%=product.id %>">More!</button>
->>>>>>> fbed6bde8f61a5ee87ff00301bd4f7b5900a5bbb
+
 
 <% end %>
 
@@ -15,17 +12,26 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
-<<<<<<< HEAD
-    let id = $(this).data("id");
+
+    var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
-      $("#product-" + id).text(data)
-=======
-    // get the id from the data attribute
-    let id = $(this).data("id");
-    $.get("/posts/" + id + "/body", function(data) {
-$("#body-" + id).text(data)
->>>>>>> fbed6bde8f61a5ee87ff00301bd4f7b5900a5bbb
+      $.get("/products/" + id + "/inventory", function(data1) {
+        console.log(data)
+        if (data1 == "true"){
+          var isDataTrue = "Available"}
+          else {
+            var isDataTrue = "Sold Out"
+          }
+        // $("#product-" + id).text("Available")}
+        // else {
+        // $("#product-" + id).text("Sold Out")}
+  var fullString = data + isDataTrue
+  $("#product-" + id).text(fullString)
+      });
     });
+
+
+
   });
 });
 </script>
