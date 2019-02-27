@@ -9,6 +9,9 @@ def new
 end
 
 def description
+end
+
+def body
   product = Product.find(params[:id])
   render plain: product.description
 end
@@ -34,6 +37,15 @@ private
 
 def product_params
   params.require(:product).permit(:name, :price, :inventory, :description)
+  redirect_to product_path(@product)
+end
+
+
+private
+
+def product_params
+  params.require(:product).permit(:name, :price, :inventory, :description)
+
 end
 
 end
