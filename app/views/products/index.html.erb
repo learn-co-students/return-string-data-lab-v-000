@@ -1,7 +1,7 @@
 
 
 <% @products.each do |product| %>
-  <%= product.name%>
+  <div><%= product.name%></div>
   <div><%= product.description%></div>
 
 <button class="js-more infor" data-id="<%= product.id%>">More Info</button>
@@ -9,14 +9,17 @@
 <% end %>
 
 
-<script> type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">
  $(function(){
+    
      $(".js-more").on('click', function(){
          let id = $(this).data("id");
-         $.get("/products/" + id + "/body", function(data){
+         $.get("/products/" + id + "/inventory", function(data){
+             debugger
              $("#inventory-" + id).text(data);
          })
      })
  })
+
 
 </script>
