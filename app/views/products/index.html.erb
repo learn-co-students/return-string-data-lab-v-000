@@ -2,21 +2,19 @@
 #   product index
 <br>
 <% @products.each do |product| %>
+
   <div><%= product.name%></div>
   <div id="description-<%= product.id%>"><%= truncate product.description%></div>
-
 <button class="js-more-infor" data-id="<%= product.id%>">More Info</button>
-
 <% end %>
-
 
 <script type="text/javascript" charset="utf-8">
  $(function(){
     
      $(".js-more-infor").on('click', function(){
        var id = $(this).data("id");
-         $.get("/products/" + id + "/description", function(data){
-         $.get("/products/" + id + "/inventory", function(data){
+         $.get("/products/" + id + "/description", function(description){
+         $.get("/products/" + id + "/inventory", function(inventory){
              //$("#inventory-" + id).html(data);
              // data ?  "Available" : "soldout"
         var inventoryText = "<strong>Available</strong>";
