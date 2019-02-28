@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
     end
 
 
+    def new
+      @product = Product.new
+    end
+
 
     def create
      @product = Product.create(product_params)
@@ -14,9 +18,10 @@ class ProductsController < ApplicationController
 
 
     def inventory
+        # binding.pry
         @product = Product.find(params[:id])
-               x = @product.inventory > 0 ?  true : false
-        render plain: x
+        render plain: @product.inventory > 0 ?  true : false
+        
     end
 
     def description
@@ -28,7 +33,7 @@ class ProductsController < ApplicationController
     private
 
     def product_params
-        params.require(:product).permit(:name, :inventory, :description)
+        params.require(:product).permit(:name, :inventory, :description, :price)
     end
 
 end
