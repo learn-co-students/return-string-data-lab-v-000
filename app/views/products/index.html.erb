@@ -13,7 +13,7 @@
 $(function() {
   $(".js-more").on('click', function() {
     // get the id from the data attribute
-    let id = $(this).data("id");
+    var id = $(this).data("id");
     $.get("/products/" + id + "/description", function(dData) {
       $.get("/products/" + id + "/inventory", function(iData) {
         if (iData === "true") {
