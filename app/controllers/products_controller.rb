@@ -13,8 +13,8 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		@product = Product.create(product_params)
-		@product.save
+		product = Product.create(product_params)
+		product.save
 		redirect_to products_path
 	end
 
@@ -29,21 +29,16 @@ class ProductsController < ApplicationController
 	def description
 		product = Product.find(params[:id])
 		render plain: product.description
-	
-	#	if product.inventory > 0
-	#		descrip = ".  Inventory is Available."
-	#	else
-	#		descrip = ".  Inventory is Sold Out."
-	#	end
 	end
 
 	def inventory
-		@product = Product.find(params[:id])
-		if @product.inventory && @product.inventory > 0
-			render plain: "true"
-		else
-			render plain: "false"
-		end
+		product = Product.find(params[:id])
+	#	if @product.inventory && @product.inventory > 0
+	#		render plain: "true"
+	#	else
+	#		render plain: "false"
+	#	end
+		render plain: product.inventory > 0 ? true : false
 	end
 
 
