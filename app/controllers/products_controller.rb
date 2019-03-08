@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
 
 	private
 
-		def set_post
+		def set_product
     		@product = Product.find(params[:id])
   		end
 
