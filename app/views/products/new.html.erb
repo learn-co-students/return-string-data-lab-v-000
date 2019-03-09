@@ -1,1 +1,23 @@
 
+<h1>Add a New Product</h1>
+
+<%= form_for @product do |form| %>
+  <p>
+    <%= form.label :name %><br />
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br />
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :inventory %><br />
+    <%= form.number_field :inventory, value: 0 %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
