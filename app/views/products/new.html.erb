@@ -1,1 +1,7 @@
-
+<% form_for @product do |f| %>
+<%= f.label :name %><%= f.text_area :name %>
+<%= f.label :price %><%= f.text_area :price %>
+<%= f.label :description %><%= f.text_area :description %>
+<%= f.label :inventory %><%= f.text_area :inventory %>
+<%= f.submit "Submit New Product" %>
+<% end %>
