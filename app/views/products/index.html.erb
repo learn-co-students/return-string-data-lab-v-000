@@ -1,16 +1,26 @@
+
+<h2>Products</h2>
+
 <% @products.each do |product| %>
-    <%= product.name %>
-    <%= product.price %>
-  <% end %>
-  
-  <script type="text/javascript" charset="utf-8">
-  $(function () {
-    $(".js-more").on('click', function() {
-      // get the id from the data attribute
-      let id = $(this).data("id");
-      $.get("/posts/" + id + "/body", function(data) {
-        $("#body-" + id).text(data);
-      });
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      $("#body-" + id).html(data + '<br><br>');
+    });
+    $.get("/products/" + id + "/inventory", function(data) {
+      var availability = (data === "true" ? "Available" : "Sold Out");
+      $("#body-" + id).append(availability);
     });
   });
-  </script>
+});
+</script>
+  
+<%= link_to 'new product', new_product_path %>
+
+
+
