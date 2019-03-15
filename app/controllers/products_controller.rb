@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(product_params)
+    # binding.pry
     redirect_to products_path
   end
 
@@ -19,7 +20,7 @@ class ProductsController < ApplicationController
 
   def inventory
     product = Product.find(params[:id])
-    binding.pry
+    # binding.pry
     if product.inventory > 0
       render plain: 'true'
     else
