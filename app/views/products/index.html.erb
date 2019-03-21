@@ -1,1 +1,20 @@
-
+<h2>Products</h2>
+<ul>
+  <%= render(@products) || "No Invoices"%>
+</ul>
+</table>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    let id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      console.log(data)
+      $("#description-body-" + id).text(data);
+    });
+    $.get("/products/" + id + "/inventory", function(data) {
+      $("#inventory-body-" + id).text(JSON.parse(data)?"Available":"Sold Out");
+    });
+  });
+});
+</script>
