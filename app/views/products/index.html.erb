@@ -9,7 +9,6 @@ $(function () {
     // get the id from the data attribute
     let id = $(this).data("id");
     $.get("/products/" + id + "/description", function(data) {
-      console.log(data)
       $("#description-body-" + id).text(data);
     });
     $.get("/products/" + id + "/inventory", function(data) {
