@@ -11,7 +11,8 @@ class ProductsController < ApplicationController
     end
     
     def inventory
-
+        product = set_product      
+        render plain: product.inventory.to_i!=0
     end
     
     def description

@@ -8,8 +8,11 @@ $(function () {
   $(".js-more").on('click', function() {
     // get the id from the data attribute
     let id = $(this).data("id");
-    $.get("/products/" + id + "/body", function(data) {
-      $("#body-" + id).text(data);
+    $.get("/products/" + id + "/description", function(data) {
+      $("#description-body-" + id).text(data);
+    });
+    $.get("/products/" + id + "/inventory", function(data) {
+      $("#inventory-body-" + id).text(JSON.parse(data)?"Available":"Sold Out");
     });
   });
 });
