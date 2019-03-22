@@ -18,11 +18,12 @@ def description
       product = Product.find(params[:id])
       render plain: product.description
     end
+
     def inventory
       product = Product.find(params[:id])
       @test = false
       if product.inventory > 0
-      	@test = true
+      @test = true
       end
       render plain: @test
     end
