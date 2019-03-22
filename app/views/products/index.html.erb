@@ -14,6 +14,7 @@ $(function () {
     $.get("/products/" + id + "/description", function(data) {
       $("#body-" + id).text(data);
     });
+    
     $.get("/products/" + id + "/inventory", function(data) {
     	if (data === "true"){$("#body-" + id).append("<p>Available<p>")};
     	if (data === "false") {$("#body-" + id).append("<p>Sold Out<p>")}
