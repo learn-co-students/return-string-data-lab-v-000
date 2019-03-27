@@ -13,21 +13,23 @@ class ProductsController < ApplicationController
   end
 
   def description
-    product = Product.find(params[:id])
+    findProductById
+    # product = Product.find(params[:id])
     render plain: product.description
   end
 
   def inventory
-    product = Product.find(params[:id])
-    if product.inventory > 0
-      render plain: 'true'
-    else
-      render plain: 'false'
-    end
+    findProductById
+    # product = Product.find(params[:id])
+    render plain: product.inventory > 0 ? true : false
   end
 
   private
   def product_params
     params.require(:product).permit(:name, :price, :description, :inventory)
+  end
+
+  def findProductById
+    product = Product.find_by(:id)
   end
 end
