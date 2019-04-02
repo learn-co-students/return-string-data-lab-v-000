@@ -11,13 +11,12 @@
       $("#description-"+ id).text(data)
     });
     $.get("/products/"+id+"/inventory", function(data){
-      //data ? $("#desctiption-"+id).text(" Available") : $("#desctiption-"+id).text(" Sold Out")
       if(data == "false") {
           debugger
-        $("#description-"+id).text(" Sold Out")
+        $("#inventory-"+id).text(" Sold Out")
       }
       else {
-        $("#description-"+id).text(" Available")
+        $("#inventory-"+id).text(" Available")
       }
     });
   });
