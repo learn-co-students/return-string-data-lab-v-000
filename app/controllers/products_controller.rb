@@ -32,11 +32,6 @@ class ProductsController < ApplicationController
     render plain: product.inventory?
   end
 
-  def inventory_status
-    product = Product.find(params[:id])
-    render plain: product.availability
-  end
-
 
   private
 

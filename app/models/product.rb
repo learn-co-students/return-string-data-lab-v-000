@@ -10,11 +10,4 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def availability
-    if self.inventory > 0
-      return "Available"
-    else
-      return "Sold Out"
-    end
-  end
 end

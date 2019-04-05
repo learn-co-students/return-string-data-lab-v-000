@@ -1,12 +1,9 @@
-<h2><%= product.name %></h2>
-
-<div id="desc-<%= product.id %>" >
-  <%= truncate(product.description) %>
+<div id="product-<%= product.id %>">
+  <h2><%= product.name %></h2>
+  <p><%= truncate product.description %></p>
+<br>
+<button class="js-more", data-id="<%= product.id %>", data-description="<%= product.description %>">More Info</button>
 </div>
 <br>
-<div id="status-<%= product.id %>" >
-</div>
-<br>
-<button class="js-moreInfo", data-id="<%= product.id %>", data-description="<%= product.description %>">More Info</button>
 <br>
 <br>
