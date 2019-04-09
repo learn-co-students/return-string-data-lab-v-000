@@ -6,8 +6,11 @@ class ProductsController < ApplicationController
 	end
 
 	def inventory
-		render plain: @product.inventory > 0 ? true : false
-
+		if (@product.inventory.nil?)
+			render plain: false
+		else
+			render plain: @product.inventory > 0 ? true : false
+		end
 	end
 
 	def index

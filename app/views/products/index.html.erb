@@ -15,14 +15,18 @@ $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
 
-    $.get("/products/" + id + "/description", function(data) {
-      $("div#product-" + id).text(data);
-		})
-		$.get("/products/" + id + "/inventory", function(data) {
-			let resp;
-			data === true ? (resp = 'Available') : (resp = 'Sold Out')
-      $("div#product-" + id).append('<br>', resp);
-    })
+    $.get("/products/" + id + "/description", function(description) {
+			$.get("/products/" + id + "/inventory", function(inventory) {
+			let inventoryText;
+				if(inventory === "true"){
+					inventoryText = '<p> Available </p>'
+				} else {
+					inventoryText = '<p> Sold Out </p>'
+				}
+			let descriptionText = "<p>" + description + "</p>" + inventoryText;
+			$("div#product-" + id).append('<br>', descriptionText);
+			})
+    });
   });
 });
 </script>
