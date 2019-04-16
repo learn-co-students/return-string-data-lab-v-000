@@ -1,3 +1,4 @@
+<%= link_to "New Product", new_product_path %>
 <h2> Products </h2>
 <table>
   <tr>
@@ -6,7 +7,7 @@
     <th>Description</th>
     <th>Inventory</th>
   </tr>
-  <%@products.each do |product| %>
+  <% @products.each do |product| %>
   <tr>
     <td><%=product.name %></td>
     <td><%=product.price %></td>
@@ -16,19 +17,21 @@
   <% end %>
 </table>
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-more").on('click', function (){
-    var id =$(this).data("id");
-  $.get("/products/" + id + "/description", function(data){
-    $("#body-" +id).text(data);
-  });
-  $.get("/products" + id + "/inventory", function (data){
-    if (data === "true"){
-      $("#inv-" + id).text("Available");
-    } else {
-      $("#inv-" + id).text("Sold Out");
-    };
-  });
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+
+    $.get("/products/" + id + "/description", function(description) {
+			$.get("/products/" + id + "/inventory", function(inventory) {
+				var inventoryText = "<strong>Available</strong>";
+			 if(inventory === "false"){
+				 inventoryText = "<strong>Sold Out</strong>";
+			 }
+			 var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+			 $("#product-" + id).html(descriptionText);
+
+			})
+    });
   });
 });
 </script>
