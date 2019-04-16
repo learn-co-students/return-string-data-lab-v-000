@@ -1,0 +1,8 @@
+<%= product.id %>: <%= product.name%>
+ <%if product.description %>
+    <div id="product-<%= product.id %>">
+			<%= truncate(product.description) %><br>
+		<div>
+      <% end %>
+
+<button class="js-more" data-id="<%= product.id %>">More Info...</button>
