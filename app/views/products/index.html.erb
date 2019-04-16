@@ -1,21 +1,15 @@
-<%= link_to "New Product", new_product_path %>
-<h2> Products </h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Inventory</th>
-  </tr>
-  <% @products.each do |product| %>
-  <tr>
-    <td><%=product.name %></td>
-    <td><%=product.price %></td>
-    <td id="bodi-<%=product.id %>"><%= truncate product.description %><button class="js-more" data-id="<%= product.id%>">More Info</button></td>
-    <td id="inv-<%=product.name %>"></td>
-  </tr>
-  <% end %>
-</table>
+<h2> Product Index </h2>
+
+<% @products.each do |product| %>
+	<%= product.name %><br>
+	<% if product.description.present? %>
+		<div id="product-<%= product.id %>">
+			<%= truncate(product.description) %><br>
+		<div>
+	<% end %>
+	<button class="js-more" data-id="<%= product.id %>"> More Info </button><br><br>
+<% end %>
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
