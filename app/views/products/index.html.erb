@@ -1,1 +1,42 @@
+<% @products.each do |product| %>
+<div id='<%= "product-#{product.id}-section" %>'>
+   <h2><%= product.name %> </h2>
+   <p id="description"></p>
+   <p id="status"></p>
+   <button class="js-more-buttons" data-id='<%= "product-#{product.id}" %>'>More Info</button>
+</div>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+
+  $(".js-more-buttons").on("click", viewMore)
+
+
+function viewMore(){
+  let id = $(this).data("id")
+  showInventoryStatus(id)
+  showDescription(id)
+
+}
+function showDescription(id){
+  $.get("/description", {id: id.split("-")[1]},
+     (data) =>{
+          $("#" + id + "-section #description").text(data)
+
+     }
+  )
+}
+function showInventoryStatus(id){
+  $.get("/inventory", {"id": id.split("-")[1]},
+     (data) => {
+       if( data == "false"){
+          $("#" + id + "-section #status").text("Sold Out!")
+       }
+       else{
+          $("#" + id + "-section #status").text("Available!")
+       }
+
+     }
+  )
+}
+</script>
