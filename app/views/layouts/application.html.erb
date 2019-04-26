@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
@@ -12,6 +13,39 @@
 
 
 <%= yield %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+$(".js-more-buttons").on("click", viewMore)
+
+function viewMore(){
+  var id = $(this).data("id")
+  showInventoryStatus(id)
+  showDescription(id)
+
+}
+function showDescription(id){
+  $.get("/description", {id: id.split("-")[1]},
+     function(data){
+          $("#" + id + "-section #description").text(data)
+
+     }
+  )
+}
+function showInventoryStatus(id){
+  $.get("/inventory", {"id": id.split("-")[1]},
+     function(data){
+       if( data == "false"){
+          $("#" + id + "-section #status").text("Sold Out!")
+       }
+       else{
+          $("#" + id + "-section #status").text("Available!")
+       }
+
+     }
+  )
+}
+</script>
 
 </body>
 </html>
