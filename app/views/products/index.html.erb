@@ -1,1 +1,8 @@
-
+<% @products.each do |product| %>
+<div id='<%= "product-#{product.id}-section" %>'>
+   <h2><%= product.name %> </h2>
+   <p id="description"></p>
+   <p id="status"></p>
+   <button name="More Info" class="js-more-buttons"  data-id='<%= "product-#{product.id}" %>'>More Info</button>
+</div>
+<% end %>
