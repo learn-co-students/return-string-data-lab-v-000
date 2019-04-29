@@ -8,8 +8,16 @@
 $(function () {
   $(".js-more").on('click', function() {
     let id = $(this).data("id");
+
     $.get("/description/" + id , function(data) {
           $("#body-" + id).append(data)
+    });
+    $.get("/products/" + id , function(data) {
+          if(data === 'true'){
+            $("#body-" + id).append('Available')
+          }else{
+          $("#body-" + id).append("Sold Out")
+          }
     });
   });
 });
