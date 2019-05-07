@@ -1,1 +1,5 @@
-
+<% @products.each do |p|%>
+    <%= p.name %></br>
+    <%= p.description %></br>
+    <%= p.inventory %>
+<% end %>
