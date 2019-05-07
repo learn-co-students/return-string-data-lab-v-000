@@ -6,11 +6,15 @@ class ProductsController < ApplicationController
         redirect_to product_path(@product)
     end
 
+    def new 
+        @product = Product.new
+    end
+
 
     private 
 
     def product_params 
-        params.require(:post).permit(:description, :inventory, :name, :price)
+        params.require(:product).permit(:description, :inventory, :name, :price)
     end
 
 end
