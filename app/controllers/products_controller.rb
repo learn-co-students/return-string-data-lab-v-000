@@ -14,6 +14,11 @@ class ProductsController < ApplicationController
         @products = Product.all
     end
 
+    def description 
+        product = Produc.find(params[:id])
+        render plain: post.description
+    end
+
 
     private 
 
