@@ -12,6 +12,7 @@ gem 'sqlite3', '~>1.3.6'
 gem 'rails-controller-testing'
 gem 'puma'
 gem 'turbolinks'
+gem 'pry'
 
 group :development, :test do
   gem 'rack_session_access'
@@ -20,6 +21,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "pry-byebug"
   gem "rspec-rails"
+  gem 'phantomjs', :require => 'phantomjs/poltergeist'
 end
 
 group :test do
