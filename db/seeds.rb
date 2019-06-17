@@ -8,8 +8,8 @@
 products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
 
 10.times do
-  products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle"]
-  Product.create(:name => products.sample, :price => Faker::Number.between(1,1500))
+  products = ["tv", "vcr", "macbook", "macbook air", "mouse", "chair", "desk", "lamp", "water bottle", "rubber duck", "rubber glove"]
+  Product.create(:name => products.sample, :price => Faker::Number.between(1,1500), :inventory => Faker::Number.between(1,1500), :description => Faker::Lorem.sentences(3).join(' '))
 end
 5.times do
   Customer.create(:name => Faker::Name.name)
