@@ -9,6 +9,13 @@
 			$.get('/products/' + id + '/body', function(data) {
 				$("#body-" + id).text(data);
 			})
+			$.get('/products/' + id + '/inventory', function(data) {
+				if(data === "true") {
+					$("#body-" + id + "#status").text("Available")
+				} else {
+					$("#body-" + id + "#status").text("Sold Out")
+				}
+			})
 		})
 	})
-</script>
+</script> 
