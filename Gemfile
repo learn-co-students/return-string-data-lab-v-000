@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'phantomjs', :require => 'phantomjs/poltergeist'
 gem 'rails', '5.0.7.1'
 gem 'coffee-rails'
 gem 'jquery-rails'
