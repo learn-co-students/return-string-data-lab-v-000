@@ -4,3 +4,14 @@
 <% @products.each do |product| %>
 <%= render partial: "product", locals: {product: product} %>
 <%end%>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-more").on("click", function() {
+      let id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(data) {
+        $("body-" + id).text(data);
+      })
+    })
+  })
+</script>

@@ -236,6 +236,7 @@ DEPENDENCIES
   faker
   jquery-rails
   poltergeist
+  pry
   pry-byebug
   puma
   rack_session_access
