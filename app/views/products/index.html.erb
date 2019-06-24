@@ -7,10 +7,20 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $(".js-more").on("click", function() {
-      let id = $(this).data("id");
+    $(".js-more").on('click', function() {
+      console.log("clicked")
+      var id = $(this).data("id");
       $.get("/products/" + id + "/description", function(data) {
-        $("body-" + id).text(data);
+        $("#description-" + id).text(data);
+      })
+// the above code works, now to display inventory
+
+      $.get("/products/" + id + "/inventory", function(data) {
+        if(data === "true")  {
+          $("#inventory-" + id).append("Available")
+        } else {
+          $("#inventory-" + id).append("Sold Out")
+        }
       })
     })
   })
