@@ -1,1 +1,17 @@
+<% @products.each do |product| %>
+  <h1><%= product.name %></h2>
+  <div id="description-<%= product.id %>"><%= truncate product.description %></div>
+  <button class="js-more" data-id="<%= product.id %>">More Info...</button>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    let id = $(this).data("id");
+    $.get("/products/" + id + "/description", function(data) {
+      // Replace text of body-id div
+      $("#description-" + id).text(data);
+    });
+  });
+});
+</script>
