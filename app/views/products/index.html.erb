@@ -1,1 +1,24 @@
+<%= link_to "New Product", new_product_path %>
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
 
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function(inventoryData) {
+      $.get("/products/" + id + "/description", function(descriptionData) {
+        debugger
+        if (inventoryData === "true") {
+          var inventory = "<p>Available</p>"
+        } else {
+          var inventory = "<p>Sold Out</p>"
+        }
+        $("#description-" + id).text(descriptionData);
+      $("#inventory-" + id).text(inventory);
+      });
+    });
+  });
+});
+</script>
