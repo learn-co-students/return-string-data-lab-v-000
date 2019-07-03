@@ -1,8 +1,9 @@
 <% @products.each do |product| %>
   <h2><%= product.name %> <br></h2>
   <div id="product-"><%= truncate product.description %></div>
-
+<div id="description-<%= product.id %>"> </div>
   <button class="js-more" data-id="<%= product.id %>">More Info</button>
+
 <%end%>
 
 
@@ -12,15 +13,20 @@ $(function () {
     var id = $(this).data("id");
 
     $.get("/products/" + id + "/description", function(description) {
-
+      console.log(description)
       $.get("/products/" + id + "/inventory", function(inventory) {
+        console.log(inventory)
         var inventoryCount = "Available"
-        if (inventory === "false"){
-          inventoryCount = "Sold Out"
-        };
-        var productDescription = description + inventoryCount
-        
-        $("#product-" + id).html(productDescription); // line 17 variable
+        if (inventory === "true"){
+          var inventoryCount =  "Available"
+        }else {
+          var inventoryCount = "Sold Out"
+        }
+
+        var productDescription = description + " " + inventoryCount
+
+
+        $("#description-" + id).text(productDescription); // line 17 variable
       });
 
       });
