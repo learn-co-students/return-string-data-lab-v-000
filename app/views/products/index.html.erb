@@ -1,5 +1,8 @@
 <% @products.each do |product| %>
-  <%= render partial: "product", locals: {product: product} %>
+  <h1><%= product.id %>: <%= product.name %></h2>
+  <div><%= truncate product.description %></div>
+ 
+  <button class="js-more" data-id="<%= product.id %>">More Info</button>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
