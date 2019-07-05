@@ -1,1 +1,23 @@
-
+<% @products.each do |product| %>
+  <%= render partial: "product", locals: {product: product} %>
+<% end %>
+<br><br><br><br><br>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function() {
+    // I'm using var here. If I use let, it won't pass the test.
+    var id = $(this).data("id");
+    $.get("/products/" + id + "/inventory", function (inventoryData){
+      $.get("/products/" + id + "/description", function(data) {
+        if (inventoryData == "true") {
+          inventoryData = "Available"
+        }else{
+          inventoryData = "Sold Out"
+        }
+        $("#description-" + id).text(data);
+        $("#inventory-" + id).text(inventoryData);
+    })
+    });
+  });
+});
+</script>

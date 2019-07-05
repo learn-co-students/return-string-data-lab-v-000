@@ -12,6 +12,7 @@ gem 'sqlite3', '~>1.3.6'
 gem 'rails-controller-testing'
 gem 'puma'
 gem 'turbolinks'
+gem 'pry', '~> 0.10.3'
 
 group :development, :test do
   gem 'rack_session_access'
