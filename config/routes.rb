@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   get 'home', to: 'static#home'
   resources :orders
   resources :invoices
+  resources :products
+  get 'inventory', to: 'products#inventory'
+  get 'description', to: 'products#description'
+  get '/products/:id/body', to: 'products#body'
 end
