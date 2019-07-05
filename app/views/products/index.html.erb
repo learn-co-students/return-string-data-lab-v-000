@@ -5,11 +5,10 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-more").on('click', function() {
-    let id = $(this).data("id");
+    // I'm using var here. If I use let, it won't pass the test.
+    var id = $(this).data("id");
     $.get("/products/" + id + "/inventory", function (inventoryData){
       $.get("/products/" + id + "/description", function(data) {
-            // debugger
-
         if (inventoryData == "true") {
           inventoryData = "Available"
         }else{

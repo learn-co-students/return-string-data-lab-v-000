@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end 
 
+  def new
+    @product = Product.new
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -14,7 +18,6 @@ class ProductsController < ApplicationController
   end
 
   def inventory
-    # binding.pry
     product = Product.find(params[:id])
     render plain: product.inventory > 0 ? true : false
   end
@@ -23,12 +26,6 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     render plain: product.description
   end
-
-  # def body
-  #   product = Product.find(params[:id])
-  #   render plain: product.description
-  # end
-
 
   private
 
