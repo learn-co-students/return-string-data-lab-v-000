@@ -1,1 +1,8 @@
-
+form to add new product
+<%= form_for @product do |f| %>
+  Product Name: <%= f.text_field :name %><br>
+  description: <%= f.text_field :description %><br>
+  inventory: <%= f.number_field :inventory %><br>
+  price: <%= f.text_field :price %>
+  <%= f.submit %>
+  <% end %>
