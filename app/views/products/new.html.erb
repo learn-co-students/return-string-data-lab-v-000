@@ -1,1 +1,20 @@
-
+<h3>Add a Product</h3>
+<%= form_for @product, url: {action: "create"} do |p| %>
+    <div>
+        <%= p.label "Name" %><br>
+        <%= p.text_field :name %>
+    </div>
+    <div>
+        <%= p.label "Description" %><br>
+        <%= p.text_area :description %>
+    </div>
+    <div>
+        <%= p.label "Price" %><br>
+        <%= p.text_field :price %>
+    </div>
+    <div>
+        <%= p.label "Inventory" %><br>
+        <%= p.text_field :inventory %>
+    </div>
+    <%= p.submit %>
+<% end %>
