@@ -18,8 +18,9 @@ group :development, :test do
   gem "capybara"
   gem "poltergeist"
   gem "database_cleaner"
-  gem "pry-byebug"
+  gem "pry"
   gem "rspec-rails"
+  gem 'rb-readline'
 end
 
 group :test do
