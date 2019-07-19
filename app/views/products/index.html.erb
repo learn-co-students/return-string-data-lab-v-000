@@ -1,1 +1,11 @@
-
+<h1>Products</h1>
+<div class="products">
+  <ol>
+    <% @products.each do |product| %>
+     <h2><li><%= product.name %></li></h2>
+     <div id="product-<%= product.id %>">
+       <%= truncate product.description %>
+       </div>
+    <% end %>
+  </ol>
+</div>
