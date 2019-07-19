@@ -5,7 +5,29 @@
      <h2><li><%= product.name %></li></h2>
      <div id="product-<%= product.id %>">
        <%= truncate product.description %>
+       <button class="js-more-info" data-id="<%= product.id %>">More Info...</button>
        </div>
+
     <% end %>
   </ol>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".js-more-info").on('click', function() {
+    var id = $(this).data("id");
+    $.get('/products/' + id + '/description', function(data) {
+      $("#product-" + id).text(data);
+    }).success(function() {
+      $.get('/products/' + id + '/inventory', function(data) {
+        if (data === "true") {
+          $("#product-" + id).append("Available");
+        }else {
+          $("#product-" + id).append("Sold Out");
+        }
+      });
+    });
+  });
+});
+
+</script>

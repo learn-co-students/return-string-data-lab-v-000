@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    binding.pry
     if @product.save
       redirect_to products_path
     else
@@ -19,6 +18,11 @@ class ProductsController < ApplicationController
 
   def description
     render plain: set_product.description
+  end
+
+  def inventory
+    #binding.pry
+    render plain: set_product.inventory > 0 ? true : false 
   end
 
   private
