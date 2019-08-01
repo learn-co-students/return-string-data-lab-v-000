@@ -2,6 +2,12 @@
     <h2><%= product.name %></h2>
 
     <p id="body-<%= product.id %>"><%= truncate product.description %></p>
+    <p id="inventory-<%= product.id %>"></p>
+
+    <% if %> 
+
+    <% else %>
+    <% end %>
      
     <button class="js-more" data-id="<%= product.id %>">More Info</button>  
 <% end %>
@@ -9,11 +15,18 @@
   <script type="text/javascript" charset="utf-8">
   $(function () {
     $(".js-more").on('click', function() {
-      // get the id from the data attribute
-      let id = $(this).data("id");
+      var id = $(this).data("id");
       $.get("/products/" + id + "/description", function(data) {
         $("#body-" + id).text(data);
       });
+      $.get("/products/" + id + "/inventory", function(data) {
+        if (data === "true") {
+          var inventory_alert = "Available";  
+        } else {
+          var inventory_alert = "Sold Out"; 
+        }
+      $("#inventory-" + id).text(inventory_alert);
+    });
     });
   });
   </script>
