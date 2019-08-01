@@ -3,6 +3,12 @@ class ProductsController < ApplicationController
     def new
         @product = Product.new 
     end
+
+    def create 
+        @product = Product.new(product_params)
+        @product.save
+        redirect_to products_path
+    end
     
     def index 
         @products = Product.all
@@ -14,10 +20,22 @@ class ProductsController < ApplicationController
     end
 
     def inventory 
+        
         product = Product.find(params[:id]) 
+        binding.pry
+        if !!product.inventory 
+            product.available = "true"
+        else
+            product.available = "false"
+        end
 
-        @inventory = !!product.inventory 
+        render plain: product.available
 
-        render 'inventory', :layout => false
     end
+
+    private 
+    def product_params
+        params.require(:product).permit(:name, :description, :inventory)
+      end
+
 end
