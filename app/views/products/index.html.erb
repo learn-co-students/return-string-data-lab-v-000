@@ -1,1 +1,17 @@
+#displays name and a truncated description, but not inventory.
+<%  @products.each do |product| %>
 
+<%= render partial: "product", locals: {product: product} %>
+<% end %>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+ $(".js-more").on('click', function() {
+    // get the id from the data attribute
+    let id = $(this).data("id");
+    $.get("/products/" + id , function(data) {
+    document.innerHTML  
+   (data.);
+   });
+ });
+});
+</script>
