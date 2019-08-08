@@ -1,16 +1,25 @@
-#displays name and a truncated description, but not inventory.
 <%  @products.each do |product| %>
-
-<%= render partial: "product", locals: {product: product} %>
+    <h1><%= product.name %></h1>
+    <div id="product-<%= product.id %>"><%= truncate(product.description) %></div>
+    <div><button class="js-more" data-id="<%= product.id %>">More Info</button></div>
 <% end %>
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
  $(".js-more").on('click', function() {
-    // get the id from the data attribute
-    let id = $(this).data("id");
-    $.get("/products/" + id , function(data) {
-    document.innerHTML  
-   (data.);
+    var id = $(this).data("id");
+    $.get("/products/" +  id + "/description", function(data) {
+        $("#product-" + id).text(data);
+    });
+    $.get("/products/" +  id + "/inventory", function(data) {
+       
+      if (data === "true") {
+        resp = "Available"
+        $("#product-" + id).append(resp);
+      } else {
+        resp = "Sold Out"
+        $("#product-" + id).append(resp);
+    }
    });
  });
 });
