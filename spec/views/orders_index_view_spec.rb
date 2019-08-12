@@ -23,24 +23,24 @@ RSpec.describe "invoices_index_view" do
 
   end
 
-  it "renders the invoice partial" do
-    orders = Order.first
-    assign(:orders, orders)
-    render :template => "orders/index.html.erb"
-    expect(rendered).to render_template(:partial => "orders/_order")
-  end
+  # it "renders the invoice partial" do
+  #   orders = Order.first
+  #   assign(:orders, orders)
+  #   render :template => "orders/index.html.erb"
+  #   expect(rendered).to render_template(:partial => "orders/_order")
+  # end
 
-  it "renders the invoice partial using the abstract method of rendering collection" do
-    orders = Order.first
-    assign(:orders, orders)
-    expect_any_instance_of(Order).to receive(:to_partial_path).and_call_original
-    render :template => "orders/index.html.erb"
-  end
+  # it "renders the invoice partial using the abstract method of rendering collection" do
+  #   orders = Order.first
+  #   assign(:orders, orders)
+  #   expect_any_instance_of(Order).to receive(:to_partial_path).and_call_original
+  #   render :template => "orders/index.html.erb"
+  # end
 
-  it "handles empty collections" do
-    assign(:orders, [])
-    render :template => "orders/index.html.erb"
-    expect(rendered).to match(/No Orders/)
-  end
+  # it "handles empty collections" do
+  #   assign(:orders, [])
+  #   render :template => "orders/index.html.erb"
+  #   expect(rendered).to match(/No Orders/)
+  # end
 
 end
