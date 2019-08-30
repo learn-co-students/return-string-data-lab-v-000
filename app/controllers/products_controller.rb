@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:description, :availability]
+
+  before_action :set_product, only: [:description, :inventory]
+
   def index
     @products = Product.all
   end
@@ -21,8 +23,8 @@ class ProductsController < ApplicationController
     render plain: @product.description
   end
 
-  def availability
-    render plain: !!@product.inventory
+  def inventory
+    render plain: @product.inventory > 0 ? true : false
   end
 
   private
