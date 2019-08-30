@@ -1,1 +1,30 @@
+<% @products.each do |product| %>
+  <%= content_tag(:div) do %>
+    <%= product.name %>
+    <%= content_tag(:div, '', id: "description-#{product.id}") do %>
+      <%= truncate product.description %>
+    <% end %>
+    <%= content_tag(:div, '', id: "inventory-#{product.id}") %>
+    <%= button_tag 'More Info', class: 'more-info', data: { 'product-id': "#{product.id}" } %>
+  <% end %>
+<% end %>
 
+<script type="text/javascript" charset="utf-8" >
+  $(function () {
+    $('.more-info').on('click', function() {
+      var productId = $(this).data('product-id');
+      $.get('/products/' + productId + '/description', function(description) {
+          $('#description-' + productId).text(description);
+      });
+      
+      $.get('/products/' + productId + '/inventory', function(inventory) {
+          if (inventory === 'true') {
+            $('#inventory-' + productId).text('Available');
+          } else {
+            $('#inventory-' + productId).text('Sold Out');
+          }  
+      });
+    });
+  });
+
+</script>
