@@ -1,1 +1,29 @@
+<h1>All Products</h1>
 
+<ul>
+  <% @products.each do |product| %>
+    <li>
+      <strong><%= product.name %></strong><br>
+      <div id="body-<%= product.id %>">
+        <%= truncate(product.description) %>
+      </div>
+      <button class="js-more" data-id="<%= product.id %>">More Info</button><br></br>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+
+  $( function () {
+    $(".js-more").on('click', function () {
+      var id = $(this).data("id"); // Using 'var' for tests, ES6 issue
+
+      $.get("/description/" + id, function (data) {
+        $.get("/inventory/" + id, function (inventory) {
+          var inventoryStatus = inventory === 'true' ? "Available" : "Sold Out";
+            $("#body-" + id).text(data + inventoryStatus);
+        });
+      });
+    });
+  });
+</script>
