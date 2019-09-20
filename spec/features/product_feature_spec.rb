@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'phantomjs'
 
 RSpec.describe "Product Index", type: :feature do
   before do

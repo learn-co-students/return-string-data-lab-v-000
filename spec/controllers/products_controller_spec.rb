@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'phantomjs'
 
 RSpec.describe ProductsController, type: :controller do
   before do
