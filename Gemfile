@@ -12,6 +12,7 @@ gem 'sqlite3', '~>1.3.6'
 gem 'rails-controller-testing'
 gem 'puma'
 gem 'turbolinks'
+gem 'phantomjs', :require => 'phantomjs/poltergeist'
 
 group :development, :test do
   gem 'rack_session_access'
