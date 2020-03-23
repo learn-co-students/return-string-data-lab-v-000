@@ -15,7 +15,7 @@ $(function () {
     let id = $(this).data("id");
     debugger;
     $.get("/description/" + id, function (data) {
-      $("#body-" + id).text(data);
+      $("#description-" + id).text(data);
     });
   });
 });
