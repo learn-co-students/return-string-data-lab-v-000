@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'home', to: 'static#home'
-  get 'description/:id', to: 'products#description'
+  get 'products/description/:id', to: 'products#description'
   resources :orders
   resources :invoices
   resources :products
