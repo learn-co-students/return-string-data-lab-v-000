@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def new
-    
+    @product = Product.new
   end
 
   def create
@@ -15,6 +15,11 @@ class ProductsController < ApplicationController
     else
       redirect_to new_product_path
     end
+  end
+
+  def description
+    product = Product.find(params[:id])
+    render plain: product.description
   end
 
   private

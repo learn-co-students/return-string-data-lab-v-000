@@ -1,13 +1,10 @@
-<h1>Create a Product</h1>
+<h2>Add Product</h2>
 
-<%= form_with(model: @product, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :price %>
-  <%= f.text_field :price %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :inventory %>
-  <%= f.text_field :inventory %>
-  <%= f.submit :Submit %>
+<%= form_for(@product, local: true) do |f| %>
+  <p><%= f.label :name %> <%= f.text_field :name %></p>
+  <p><%= f.label :price %> <%= f.text_field :price %></p>
+  <p><%= f.label :description %> <%= f.text_field :description %></p>
+  <p><%= f.submit :Submit %></p>
 <% end %>
+
+<%= link_to 'Products', products_path %>

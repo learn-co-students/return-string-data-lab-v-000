@@ -1,5 +1,6 @@
 
 <h2>Products</h2>
+<%= link_to 'Add Product', new_product_path %>
 
 <% @products.each do |p| %>
   <h3><%= p.name %></h3>
@@ -7,3 +8,14 @@
 
   <button class="js-more" data-id="<%= p.id %>">More Info</button>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-more").on('click', function () {
+    let id = $(this).data("id");
+    $.get("/description/" + id, function (data) {
+      $("#body-" + id).text(data);
+    });
+  });
+});
+</script>
