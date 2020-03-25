@@ -19,7 +19,6 @@ $(function () {
     });
 
     $.get("/products/" + id + "/inventory", function (data) {
-      console.log("inventory-data", data)
       if (data == "true") {
         $("#availability-" + id).text("Available");
       } else {
