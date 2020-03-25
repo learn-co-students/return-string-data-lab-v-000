@@ -18,14 +18,14 @@ $(function () {
       $("#desc-" + id).text(data);
     });
 
-    // $.get("/products/" + id + "/inventory", function (boolean) {
-    //   console.log("inventory-data", data)
-    //   if (data == true) {
-    //     $("#availability-" + id).text("Available");
-    //   } else {
-    //     $("#availability-" + id).text("Sold Out");
-    //   }
-    // });
+    $.get("/products/" + id + "/inventory", function (data) {
+      console.log("inventory-data", data)
+      if (data == "true") {
+        $("#availability-" + id).text("Available");
+      } else {
+        $("#availability-" + id).text("Sold Out");
+      }
+    });
   })
 });
 </script>
