@@ -5,7 +5,7 @@
 <% @products.each do |p| %>
   <h3><%= p.name %></h3>
   <div id="desc-<%= p.id %>"><%= truncate p.description %></div>
- <div id="availability"></div>
+ <div id="availability-<%= p.id %>"></div>
 
   <button class="js-more" data-id="<%= p.id %>">More Info</button>
 <% end %>
@@ -18,7 +18,14 @@ $(function () {
       $("#desc-" + id).text(data);
     });
 
-    // $("#availability")
-  });
+    // $.get("/products/" + id + "/inventory", function (boolean) {
+    //   console.log("inventory-data", data)
+    //   if (data == true) {
+    //     $("#availability-" + id).text("Available");
+    //   } else {
+    //     $("#availability-" + id).text("Sold Out");
+    //   }
+    // });
+  })
 });
 </script>
