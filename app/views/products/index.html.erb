@@ -13,9 +13,8 @@
 $(function () {
   $(".js-more").on('click', function () {
     let id = $(this).data("id");
-    debugger;
-    $.get("/description/" + id, function (data) {
-      $("#description-" + id).text(data);
+    $.get("/products/" + id + "/description", function (data) {
+      $("#desc-" + id).text(data);
     });
   });
 });
