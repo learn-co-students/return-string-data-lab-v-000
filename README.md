@@ -26,3 +26,25 @@ use AJAX to bring data to the page.
     is inventory available, display "Available" and if there isn't, display
     "Sold Out".
 7.  Make sure tests pass!
+
+## PhantomJS Errors
+
+If you receive this error:
+
+`Could not find an executable ["phantomjs"] on your path.`
+
+You'll need to install PhantomJS on your computer before the tests will work. 
+
+For Mac users, run the following:
+
+```sh
+brew cask install phantomjs
+```
+
+For Windows users, run the following:
+
+```sh
+npm install -g phantomjs-prebuilt
+```
+
+You can confirm the installation has worked by running `phantomjs -v`.
