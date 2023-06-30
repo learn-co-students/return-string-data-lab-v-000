@@ -1,1 +1,73 @@
+<% @products.each do |product| %>
+  <h2><%= product.id %> - <%= product.name %></h2>
+  <div id="description-<%= product.id %>">
+    <p class="description"><%= truncate product.description %></p>
+    <p class="availibility"></p>
+  </div>
+  <button data-id="<%= product.id %>" class="js-more">More Info</button>
+<% end %>
 
+<!-- jQuery -->
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-more").on('click', function () {
+      var id = $(this).data("id");
+      $.get("/products/" + id + "/description", function(description) {
+        $.get("/products/" + id + "/inventory", function(inventory) {
+          var inventoryText = "<strong>Available</strong>";
+          if(inventory === "false") {
+            inventoryText = "<strong>Sold Out</strong>";
+          }
+          var descriptionText = "<p>" + description + "</p><p>" + inventoryText + "</p>";
+          document.querySelector('#description-' + id).innerHTML = descriptionText;
+        });
+      });
+    });
+  });
+</script>
+
+<!-- Vanilla Javascript -->
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function(e) {
+    let buttons = document.querySelectorAll('.js-more');
+    buttons.forEach(function(button) {
+      button.addEventListener('click', function(e) {
+        fetchDescription(button);
+        fetchAvailability(button);
+      })
+    })
+  })
+  function fetchDescription(button) {
+    let id = button.getAttribute('data-id');
+    fetch(`/products/${id}/description`, {method: 'GET'})
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        let description = document.querySelector(`#description-${id} p.description`);
+        description.textContent = text;
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+  }
+  function fetchAvailability(button) {
+    let id = button.getAttribute('data-id');
+    fetch(`/products/${id}/inventory`, {method: 'GET' })
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        let availibility = document.querySelector(`#description-${id} p.availibility`);
+        if (text === 'true') {
+          availibility.textContent = 'Available';
+        } else if (text === 'false') {
+          availibility.textContent = 'Sold Out';
+        }
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+  }
+
+</script>
