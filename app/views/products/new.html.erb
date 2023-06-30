@@ -1,1 +1,26 @@
+<%= form_for(@product) do |part| %>
 
+<div class="field">
+  <%= part.label :name %>
+  <%= part.field :name %>
+</div>
+
+<div class="field">
+  <%= part.label :price %>
+  <%= part.field :price %>
+</div>
+
+<div class="field">
+  <%= part.label :inventory %>
+  <%= part.field :inventory %>
+</div>
+
+<div class="field">
+  <%= part.label :description %>
+  <%= part.field :description %>
+</div>
+
+<div class="actions">
+    <%= f.submit %>
+  </div>
+<%end>
