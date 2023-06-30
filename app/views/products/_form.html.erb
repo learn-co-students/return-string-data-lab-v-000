@@ -1,0 +1,22 @@
+<h1>Product Form</h1>
+
+<%= form_for @product do |f| %>
+  <div class="field">
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name %><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, 'Description'%>
+    <%= f.text_area :description %><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :inventory, 'Inventory' %>
+    <%= f.text_field :inventory %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
