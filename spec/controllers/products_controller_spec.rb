@@ -18,6 +18,7 @@ RSpec.describe ProductsController, type: :controller do
 
   describe "GET inventory" do
     it 'returns true or false appropriately' do
+      # binding.pry
       p1 = Product.create(@product_attributes)
       p2 = Product.create(name: "No Inventory", inventory: 0)
       get :inventory, params: { id: p1.id }
